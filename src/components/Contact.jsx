@@ -187,7 +187,7 @@ function ContactUs() {
             }}>
             <Avatar
               alt="Fortuna Enterprise"
-              src="/path/to/logo.jpg"
+              src="company-logo-png.png"
               sx={{ mb: 2, width: 60, height: 60 }}
             />
             <Typography
@@ -206,7 +206,7 @@ function ContactUs() {
             <Divider sx={{ mb: 2, backgroundColor: "whiteAlpha.400" }} />
             <Typography fontWeight="bold">Contact Information:</Typography>
             <Typography>
-              • Address: Your Company Address, City, India
+              • Address: Fortuna Enterprise B-320 ,SaraBhai Compound , Vadodara
             </Typography>
             <Typography>• Phone: +91-7506615066</Typography>
             <Typography>
@@ -229,7 +229,10 @@ function ContactUs() {
                 aria-label="LinkedIn">
                 <FaLinkedin />
               </IconButton>
-              <IconButton color="inherit" href="#" aria-label="Instagram">
+              <IconButton
+                color="inherit"
+                href="https://www.instagram.com/in/mahesh-gulechaa-941867210"
+                aria-label="Instagram">
                 <FaInstagram />
               </IconButton>
             </Stack>

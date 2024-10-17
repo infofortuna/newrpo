@@ -17,6 +17,15 @@ const Footer = () => {
       }}>
       <Container maxWidth="lg">
         <Grid container spacing={4}>
+          {/* Logo Section */}
+          <Grid item xs={12} textAlign="center" mb={2}>
+            <img
+              src="company-logo-png.png" // Replace with the path to your logo image
+              alt="Fortuna Enterprise Logo"
+              style={{ height: "50px", width: "auto" }} // Adjust height as needed
+            />
+          </Grid>
+
           {/* About Section */}
           <Grid item xs={12} sm={6} md={3}>
             <Typography variant="h6" gutterBottom>
@@ -60,11 +69,12 @@ const Footer = () => {
               Contact Us
             </Typography>
             <Typography variant="body2">
-              Email: info@fortunaenterprise.com
+              Email: info@fortunaenterprise.in
             </Typography>
-            <Typography variant="body2">Phone: +91-1234567890</Typography>
+            <Typography variant="body2">Phone: +91-7506615066</Typography>
             <Typography variant="body2">
-              Address: 123 Fortune Lane, City, Country
+              Address: Fortuna Enterprise B-320 ,SaraBhai Compound , Vadodara
+              ,Gujarat , India
             </Typography>
           </Grid>
 
@@ -91,7 +101,7 @@ const Footer = () => {
                 <TwitterIcon />
               </Link>
               <Link
-                href="https://www.instagram.com"
+                href="https://www.instagram.com/in/mahesh-gulechaa-941867210"
                 target="_blank"
                 rel="noopener noreferrer"
                 color="inherit"
@@ -99,7 +109,7 @@ const Footer = () => {
                 <InstagramIcon />
               </Link>
               <Link
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/in/mahesh-gulechaa-941867210"
                 target="_blank"
                 rel="noopener noreferrer"
                 color="inherit"

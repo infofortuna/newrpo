@@ -271,7 +271,7 @@ const faqData = [
   {
     question: "Who can I contact for more information?",
     answer:
-      "For any further questions or assistance, please reach out to our customer support team via email or call us at +91-XXXXXXXXXX.",
+      "For any further questions or assistance, please reach out to our customer support team via email or call us at +91-7506615066.",
   },
 ];
 

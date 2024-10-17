@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"; // Import the up arrow icon
 import { useTheme } from "@mui/material/styles";
 import "./styles.css"; // Import your CSS file
 
@@ -25,9 +26,37 @@ export default function EnhancedNavbar() {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const toggleDrawer = () => {
     setDrawerOpen((prev) => !prev);
+  };
+
+  // Scroll to top on pathname change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  // Show "Scroll to Top" button on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        // Adjust this value as needed
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -129,123 +158,153 @@ export default function EnhancedNavbar() {
   ];
 
   return (
-    <AppBar
-      position="sticky"
-      style={{ backgroundColor: "#ffffff", color: "#333" }}>
-      <Toolbar className="container mx-auto flex justify-between items-center px-4 py-2">
-        <Typography variant="h6" style={{ color: "#333" }}>
-          <Link
-            to="/"
-            className="flex items-center no-underline hover:no-underline">
-            <img
-              src="/company-logo-png.png"
-              alt="Fortuna Enterprise Company Logo"
-              className="h-8 mr-2"
-            />
-            <span className="text-xl">Fortuna Enterprise</span>
-          </Link>
-        </Typography>
+    <>
+      <AppBar
+        position="sticky"
+        style={{ backgroundColor: "#ffffff", color: "#333" }}>
+        <Toolbar className="container mx-auto flex justify-between items-center px-4 py-2">
+          <Typography variant="h6" style={{ color: "#333" }}>
+            <Link
+              to="/"
+              className="flex items-center no-underline hover:no-underline">
+              <img
+                src="/company-logo-png.png"
+                alt="Fortuna Enterprise Company Logo"
+                className="h-8 mr-2"
+              />
+              <span className="text-xl">Fortuna Enterprise</span>
+            </Link>
+          </Typography>
 
-        <div className="hidden md:flex space-x-6 items-center">
-          {menuItems.map((item) => (
-            <Button
-              key={item.path}
-              component={Link}
-              to={item.path}
-              style={{
-                color: location.pathname === item.path ? "#1E40AF" : "#333",
-                fontWeight: location.pathname === item.path ? "bold" : "normal",
-                textDecoration:
-                  location.pathname === item.path ? "underline" : "none",
-                transition: "color 0.3s",
-              }}
-              onMouseEnter={(e) => (e.target.style.color = "#1E40AF")}
-              onMouseLeave={(e) =>
-                (e.target.style.color =
-                  location.pathname === item.path ? "#1E40AF" : "#333")
-              }>
-              {item.label}
-            </Button>
-          ))}
-        </div>
-
-        <Button
-          component={Link}
-          to="/contact"
-          style={{
-            backgroundColor: "#1E40AF",
-            color: "#ffffff",
-            padding: "8px 16px",
-            borderRadius: "9999px",
-            transition: "background-color 0.3s",
-            marginLeft: isMobile ? "auto" : "16px",
-          }}
-          onMouseEnter={(e) => (e.target.style.backgroundColor = "#1D4ED8")}
-          onMouseLeave={(e) => (e.target.style.backgroundColor = "#1E40AF")}>
-          Get Started
-        </Button>
-
-        {isMobile && (
-          <IconButton
-            edge="end"
-            aria-label="menu"
-            onClick={toggleDrawer}
-            style={{ color: "#333", marginLeft: "8px" }}>
-            <MenuIcon />
-          </IconButton>
-        )}
-      </Toolbar>
-
-      <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer}>
-        <div
-          style={{
-            width: "250px",
-            padding: "16px",
-            backgroundColor: "#f9f9f9",
-          }}>
-          <div className="flex justify-between items-center mb-4">
-            <Typography
-              variant="h6"
-              style={{ fontWeight: "bold", color: "#333" }}>
-              Menu
-            </Typography>
-            <IconButton aria-label="close menu" onClick={toggleDrawer}>
-              <CloseIcon style={{ color: "#333" }} />
-            </IconButton>
-          </div>
-          <Divider />
-          <List>
+          <div className="hidden md:flex space-x-6 items-center">
             {menuItems.map((item) => (
-              <ListItem
-                button
+              <Button
                 key={item.path}
-                onClick={toggleDrawer}
                 component={Link}
                 to={item.path}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.backgroundColor = "#e0e0e0")
-                }
+                style={{
+                  color: location.pathname === item.path ? "#1E40AF" : "#333",
+                  fontWeight:
+                    location.pathname === item.path ? "bold" : "normal",
+                  textDecoration:
+                    location.pathname === item.path ? "underline" : "none",
+                  transition: "color 0.3s",
+                }}
+                onMouseEnter={(e) => (e.target.style.color = "#1E40AF")}
                 onMouseLeave={(e) =>
-                  (e.currentTarget.style.backgroundColor = "transparent")
-                }
-                aria-label={`Navigate to ${item.label}`} // Accessibility improvement
-              >
-                <ListItemText>
-                  <span
-                    style={{
-                      color:
-                        location.pathname === item.path ? "#1E40AF" : "#333",
-                      fontWeight:
-                        location.pathname === item.path ? "bold" : "normal",
-                    }}>
-                    {item.label}
-                  </span>
-                </ListItemText>
-              </ListItem>
+                  (e.target.style.color =
+                    location.pathname === item.path ? "#1E40AF" : "#333")
+                }>
+                {item.label}
+              </Button>
             ))}
-          </List>
-        </div>
-      </Drawer>
-    </AppBar>
+          </div>
+
+          <Button
+            component={Link}
+            to="/contact"
+            style={{
+              backgroundColor: "#1E40AF",
+              color: "#ffffff",
+              padding: "8px 16px",
+              borderRadius: "9999px",
+              transition: "background-color 0.3s",
+              marginLeft: isMobile ? "auto" : "16px",
+            }}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#1D4ED8")}
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "#1E40AF")}>
+            Get Started
+          </Button>
+
+          {isMobile && (
+            <IconButton
+              edge="end"
+              aria-label="menu"
+              onClick={toggleDrawer}
+              style={{ color: "#333", marginLeft: "8px" }}>
+              <MenuIcon />
+            </IconButton>
+          )}
+        </Toolbar>
+
+        <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer}>
+          <div
+            style={{
+              width: "250px",
+              padding: "16px",
+              backgroundColor: "#f9f9f9",
+            }}>
+            <div className="flex justify-between items-center mb-4">
+              <Typography
+                variant="h6"
+                style={{ fontWeight: "bold", color: "#333" }}>
+                Menu
+              </Typography>
+              <IconButton aria-label="close menu" onClick={toggleDrawer}>
+                <CloseIcon style={{ color: "#333" }} />
+              </IconButton>
+            </div>
+            <Divider />
+            <List>
+              {menuItems.map((item) => (
+                <ListItem
+                  button
+                  key={item.path}
+                  onClick={toggleDrawer}
+                  component={Link}
+                  to={item.path}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#e0e0e0")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.backgroundColor = "transparent")
+                  }
+                  aria-label={`Navigate to ${item.label}`} // Accessibility improvement
+                >
+                  <ListItemText>
+                    <span
+                      style={{
+                        color:
+                          location.pathname === item.path ? "#1E40AF" : "#333",
+                        fontWeight:
+                          location.pathname === item.path ? "bold" : "normal",
+                      }}>
+                      {item.label}
+                    </span>
+                  </ListItemText>
+                </ListItem>
+              ))}
+            </List>
+          </div>
+        </Drawer>
+      </AppBar>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <Button
+          onClick={scrollToTop}
+          style={{
+            position: "fixed",
+            bottom: "16px",
+            right: "16px",
+            backgroundColor: "#1E40AF",
+            color: "#fff",
+            borderRadius: "50%", // Ensures the button is round
+            width: "56px", // Slightly increased for better visibility
+            height: "56px", // Make sure width and height are equal for a round shape
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+            transition: "background-color 0.3s",
+            zIndex: 1000, // Ensure it appears above other elements
+          }}
+          onMouseEnter={(e) => (e.target.style.backgroundColor = "#1D4ED8")}
+          onMouseLeave={(e) => (e.target.style.backgroundColor = "#1E40AF")}
+          aria-label="Scroll to Top">
+          <KeyboardArrowUpIcon />
+        </Button>
+      )}
+    </>
   );
 }
