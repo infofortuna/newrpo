@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import {
-  AppBar,
-  Toolbar,
   Typography,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
   TextField,
   Card,
   CardContent,
@@ -15,324 +8,446 @@ import {
   Grid,
   Box,
   Button,
+  Snackbar,
+  Alert,
   Dialog,
-  DialogActions,
-  DialogContent,
   DialogTitle,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import { format } from "date-fns";
 
 const Dashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [openDialog, setOpenDialog] = useState(false);
-  const [currentPost, setCurrentPost] = useState(null);
-  const [imagePreview, setImagePreview] = useState("");
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastSeverity, setToastSeverity] = useState("info");
   const [posts, setPosts] = useState([
     {
-      title: "Leveraging Technology for Better Agricultural Trade Outcomes",
-      image:
-        "https://media.istockphoto.com/id/471175766/photo/peeled-garlic-in-bowl.jpg?s=612x612&w=0&k=20&c=a9fLu-110l9bPbwkyHpmeiJxgWvh_sA2AVzKWrg7odQ=",
-      excerpt: "Explore how technology is transforming agricultural trade...",
-      date: "2024-08-30",
-      author: "Emma Wilson",
+      id: 1,
+      title: "The Organic Trade Landscape: Trends to Watch",
+      image: "https://via.placeholder.com/400x250.png?text=Organic+Trade",
+      excerpt: "Explore the current trends in the organic trade landscape...",
+      date: "2024-10-01",
+      author: "John Doe",
       readTime: "5 min",
-      category: "Technology",
+      category: "Trade",
+      fullContent:
+        "This is the full content of the first blog post. It delves into the details of organic trade trends and insights...",
     },
     {
-      title: "Leveraging Technology for Better Agricultural Trade Outcomes",
-      image:
-        "https://media.istockphoto.com/id/471175766/photo/peeled-garlic-in-bowl.jpg?s=612x612&w=0&k=20&c=a9fLu-110l9bPbwkyHpmeiJxgWvh_sA2AVzKWrg7odQ=",
-      excerpt: "Explore how technology is transforming agricultural trade...",
-      date: "2024-08-30",
-      author: "Emma Wilson",
-      readTime: "5 min",
-      category: "Technology",
+      id: 2,
+      title:
+        "Top 10 Tips for Successful Importing and Exporting of Organic Goods",
+      image: "https://via.placeholder.com/400x250.png?text=Importing+Tips",
+      excerpt:
+        "Learn essential tips for navigating the import-export process...",
+      date: "2024-09-25",
+      author: "Jane Smith",
+      readTime: "7 min",
+      category: "Tips",
+      fullContent:
+        "This is the full content of the second blog post, discussing important tips for successful importing and exporting...",
     },
-    {
-      title: "Leveraging Technology for Better Agricultural Trade Outcomes",
-      image:
-        "https://media.istockphoto.com/id/471175766/photo/peeled-garlic-in-bowl.jpg?s=612x612&w=0&k=20&c=a9fLu-110l9bPbwkyHpmeiJxgWvh_sA2AVzKWrg7odQ=",
-      excerpt: "Explore how technology is transforming agricultural trade...",
-      date: "2024-08-30",
-      author: "Emma Wilson",
-      readTime: "5 min",
-      category: "Technology",
-    },
-    // Additional posts...
   ]);
-
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
-
-  const handleDialogOpen = (post = null) => {
-    setCurrentPost(post);
-    setImagePreview(post ? post.image : "");
-    setOpenDialog(true);
-  };
-
-  const handleDialogClose = () => {
-    setCurrentPost(null);
-    setImagePreview("");
-    setOpenDialog(false);
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setCurrentPost((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-        setCurrentPost((prev) => ({
-          ...prev,
-          image: reader.result,
-        }));
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleSavePost = () => {
-    if (currentPost) {
-      // Update existing post
-      setPosts((prev) =>
-        prev.map((post) =>
-          post.title === currentPost.title ? currentPost : post
-        )
-      );
-    } else {
-      // Add new post
-      setPosts((prev) => [
-        ...prev,
-        { ...currentPost, date: new Date().toISOString().split("T")[0] },
-      ]);
-    }
-    handleDialogClose();
-  };
-
-  const handleDeletePost = (title) => {
-    setPosts((prev) => prev.filter((post) => post.title !== title));
-  };
+  const [openAddDialog, setOpenAddDialog] = useState(false);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
+  const [openPostModal, setOpenPostModal] = useState(false);
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [newPost, setNewPost] = useState({
+    title: "",
+    image: "",
+    excerpt: "",
+    date: "",
+    author: "",
+    readTime: "",
+    category: "",
+  });
+  const [editPostId, setEditPostId] = useState(null);
+  const [deletePostId, setDeletePostId] = useState(null);
+  const [selectedPost, setSelectedPost] = useState(null);
 
   const filteredPosts = posts.filter((post) =>
     post.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    if (e.target.value && filteredPosts.length === 0) {
+      showToast("No matching blog posts found!", "warning");
+    }
+  };
+
+  const showToast = (message, severity) => {
+    setToastMessage(message);
+    setToastSeverity(severity);
+    setToastOpen(true);
+  };
+
+  const handleAddPost = () => {
+    setOpenAddDialog(true);
+  };
+
+  const handleEditPost = (post) => {
+    setNewPost(post);
+    setEditPostId(post.id);
+    setOpenEditDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    setOpenAddDialog(false);
+    setOpenEditDialog(false);
+    setOpenPostModal(false);
+    setOpenDeleteDialog(false); // Close delete dialog
+    setNewPost({
+      title: "",
+      image: "",
+      excerpt: "",
+      date: "",
+      author: "",
+      readTime: "",
+      category: "",
+    });
+    setEditPostId(null);
+    setDeletePostId(null);
+    setSelectedPost(null);
+  };
+
+  const handlePostSubmit = () => {
+    const newId = posts.length > 0 ? posts[posts.length - 1].id + 1 : 1;
+    const postToAdd = { ...newPost, id: newId };
+    setPosts([...posts, postToAdd]);
+    showToast("Post added successfully!", "success");
+    handleDialogClose();
+  };
+
+  const handlePostUpdate = () => {
+    const updatedPosts = posts.map((post) =>
+      post.id === editPostId ? newPost : post
+    );
+    setPosts(updatedPosts);
+    showToast("Post updated successfully!", "success");
+    handleDialogClose();
+  };
+
+  const handlePostDelete = (id) => {
+    setPosts(posts.filter((post) => post.id !== id));
+    showToast("Post deleted successfully!", "success");
+  };
+
+  const handleNewPostChange = (e) => {
+    const { name, value } = e.target;
+    setNewPost({ ...newPost, [name]: value });
+  };
+
+  const handlePostClick = (post) => {
+    setSelectedPost(post);
+    setOpenPostModal(true);
+  };
+
+  const handleDeleteConfirmation = (id) => {
+    setDeletePostId(id);
+    setOpenDeleteDialog(true);
+  };
+
+  const confirmDeletePost = () => {
+    handlePostDelete(deletePostId);
+    handleDialogClose();
+  };
+
+  const isFormValid = () => {
+    return (
+      newPost.title &&
+      newPost.image &&
+      newPost.excerpt &&
+      newPost.date &&
+      newPost.author &&
+      newPost.readTime &&
+      newPost.category
+    );
+  };
+
   return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={toggleDrawer}>
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6">Fortuna Enterprise Blog</Typography>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => handleDialogOpen()}
-            sx={{
-              marginLeft: "auto",
-              bgcolor: "#1976d2", // Custom color
-              "&:hover": {
-                bgcolor: "#155a8a", // Darker shade on hover
-              },
-              borderRadius: "20px",
-              padding: "10px 20px",
-              fontWeight: "bold",
-            }}>
-            Add Blog Post
-          </Button>
-        </Toolbar>
-      </AppBar>
+    <Box className="container mx-auto p-4">
+      <Typography variant="h4" align="center" gutterBottom>
+        Blog Dashboard
+      </Typography>
 
-      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer}>
-        <List>
-          <ListItem button>
-            <ListItemText primary="Home" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Blog" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Products" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Services" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText primary="Contact" />
-          </ListItem>
-        </List>
-      </Drawer>
-
-      <Box className="container mx-auto p-4">
-        <Typography variant="h4" align="center" gutterBottom>
-          Welcome to Our Blog
-        </Typography>
-        <Typography variant="subtitle1" align="center" gutterBottom>
-          Insights, Tips, and Trends in Agricultural Import-Export
-        </Typography>
-
-        {/* Search Bar */}
-        <Box className="mb-6">
-          <TextField
-            label="Search Blog Posts"
-            variant="outlined"
-            fullWidth
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </Box>
-
-        <Grid container spacing={4}>
-          {filteredPosts.map((post, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card className="shadow-lg rounded-lg overflow-hidden">
-                <CardMedia
-                  component="img"
-                  height="250"
-                  image={post.image}
-                  alt={post.title}
-                />
-                <CardContent>
-                  <Typography
-                    variant="h5"
-                    component="div"
-                    className="text-xl font-bold">
-                    {post.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    className="mt-2">
-                    {post.excerpt}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    className="mt-2">
-                    <strong>Category:</strong> {post.category} |{" "}
-                    <strong>Read Time:</strong> {post.readTime}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Author:</strong> {post.author} |{" "}
-                    <strong>Date:</strong> {post.date}
-                  </Typography>
-                  <Box mt={2} textAlign="right">
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={() => handleDialogOpen(post)}>
-                      Edit
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      onClick={() => handleDeletePost(post.title)}>
-                      Delete
-                    </Button>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+      {/* Search Bar */}
+      <Box className="mb-6" display="flex" justifyContent="center">
+        <TextField
+          label="Search Blog Posts"
+          variant="outlined"
+          fullWidth
+          onChange={handleSearchChange}
+          aria-label="Search blog posts"
+          sx={{ maxWidth: 600 }}
+        />
       </Box>
 
-      {/* Dialog for Add/Edit Blog Post */}
-      <Dialog open={openDialog} onClose={handleDialogClose}>
-        <DialogTitle>
-          {currentPost ? "Edit Blog Post" : "Add New Blog Post"}
-        </DialogTitle>
+      {/* Action Buttons */}
+      <Box display="flex" justifyContent="center" mb={4}>
+        <Button variant="contained" color="primary" onClick={handleAddPost}>
+          Add New Post
+        </Button>
+      </Box>
+
+      {/* Toast Notification */}
+      <Snackbar
+        open={toastOpen}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        autoHideDuration={3000}
+        onClose={() => setToastOpen(false)}>
+        <Alert
+          onClose={() => setToastOpen(false)}
+          severity={toastSeverity}
+          sx={{ width: "100%" }}>
+          {toastMessage}
+        </Alert>
+      </Snackbar>
+
+      {/* Add Post Dialog */}
+      <Dialog open={openAddDialog} onClose={handleDialogClose}>
+        <DialogTitle>Add a New Blog Post</DialogTitle>
         <DialogContent>
           <TextField
-            autoFocus
             margin="dense"
             label="Title"
-            type="text"
-            fullWidth
             name="title"
-            value={currentPost?.title || ""}
-            onChange={handleInputChange}
+            fullWidth
+            variant="outlined"
+            onChange={handleNewPostChange}
           />
-          <Box mt={2}>
-            <input
-              accept="image/*"
-              type="file"
-              id="image-upload"
-              style={{ display: "none" }}
-              onChange={handleImageChange}
-            />
-            <label htmlFor="image-upload">
-              <Button variant="outlined" component="span">
-                Upload Image
-              </Button>
-            </label>
-            {imagePreview && (
-              <CardMedia
-                component="img"
-                height="150"
-                image={imagePreview}
-                alt="Preview"
-                style={{ marginTop: "10px" }}
-              />
-            )}
-          </Box>
+          <TextField
+            margin="dense"
+            label="Image URL"
+            name="image"
+            fullWidth
+            variant="outlined"
+            onChange={handleNewPostChange}
+          />
           <TextField
             margin="dense"
             label="Excerpt"
-            type="text"
-            fullWidth
             name="excerpt"
-            value={currentPost?.excerpt || ""}
-            onChange={handleInputChange}
+            fullWidth
+            variant="outlined"
+            onChange={handleNewPostChange}
           />
           <TextField
             margin="dense"
-            label="Category"
-            type="text"
+            label="Date"
+            name="date"
             fullWidth
-            name="category"
-            value={currentPost?.category || ""}
-            onChange={handleInputChange}
-          />
-          <TextField
-            margin="dense"
-            label="Read Time"
-            type="text"
-            fullWidth
-            name="readTime"
-            value={currentPost?.readTime || ""}
-            onChange={handleInputChange}
+            variant="outlined"
+            onChange={handleNewPostChange}
           />
           <TextField
             margin="dense"
             label="Author"
-            type="text"
-            fullWidth
             name="author"
-            value={currentPost?.author || ""}
-            onChange={handleInputChange}
+            fullWidth
+            variant="outlined"
+            onChange={handleNewPostChange}
+          />
+          <TextField
+            margin="dense"
+            label="Read Time"
+            name="readTime"
+            fullWidth
+            variant="outlined"
+            onChange={handleNewPostChange}
+          />
+          <TextField
+            margin="dense"
+            label="Category"
+            name="category"
+            fullWidth
+            variant="outlined"
+            onChange={handleNewPostChange}
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDialogClose} color="primary">
+          <Button onClick={handleDialogClose} color="secondary">
             Cancel
           </Button>
-          <Button onClick={handleSavePost} color="primary">
-            Save
+          <Button
+            onClick={handlePostSubmit}
+            color="primary"
+            disabled={!isFormValid()}>
+            Add Post
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+
+      {/* Edit Post Dialog */}
+      <Dialog open={openEditDialog} onClose={handleDialogClose}>
+        <DialogTitle>Edit Blog Post</DialogTitle>
+        <DialogContent>
+          <TextField
+            margin="dense"
+            label="Title"
+            name="title"
+            fullWidth
+            variant="outlined"
+            value={newPost.title}
+            onChange={handleNewPostChange}
+          />
+          <TextField
+            margin="dense"
+            label="Image URL"
+            name="image"
+            fullWidth
+            variant="outlined"
+            value={newPost.image}
+            onChange={handleNewPostChange}
+          />
+          <TextField
+            margin="dense"
+            label="Excerpt"
+            name="excerpt"
+            fullWidth
+            variant="outlined"
+            value={newPost.excerpt}
+            onChange={handleNewPostChange}
+          />
+          <TextField
+            margin="dense"
+            label="Date"
+            name="date"
+            fullWidth
+            variant="outlined"
+            value={newPost.date}
+            onChange={handleNewPostChange}
+          />
+          <TextField
+            margin="dense"
+            label="Author"
+            name="author"
+            fullWidth
+            variant="outlined"
+            value={newPost.author}
+            onChange={handleNewPostChange}
+          />
+          <TextField
+            margin="dense"
+            label="Read Time"
+            name="readTime"
+            fullWidth
+            variant="outlined"
+            value={newPost.readTime}
+            onChange={handleNewPostChange}
+          />
+          <TextField
+            margin="dense"
+            label="Category"
+            name="category"
+            fullWidth
+            variant="outlined"
+            value={newPost.category}
+            onChange={handleNewPostChange}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} color="secondary">
+            Cancel
+          </Button>
+          <Button
+            onClick={handlePostUpdate}
+            color="primary"
+            disabled={!isFormValid()}>
+            Update Post
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={openDeleteDialog} onClose={handleDialogClose}>
+        <DialogTitle>Confirm Deletion</DialogTitle>
+        <DialogContent>
+          <Typography>Are you sure you want to delete this post?</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={confirmDeletePost} color="primary">
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Blog Posts Grid */}
+      <Grid container spacing={4}>
+        {filteredPosts.length > 0 ? (
+          filteredPosts.map((post) => (
+            <Grid item xs={12} sm={6} md={4} key={post.id}>
+              <Card onClick={() => handlePostClick(post)}>
+                <CardMedia
+                  component="img"
+                  alt={post.title}
+                  height="140"
+                  image={post.image}
+                />
+                <CardContent>
+                  <Typography variant="h5">{post.title}</Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {post.excerpt}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary">
+                    {format(new Date(post.date), "MMMM dd, yyyy")} -{" "}
+                    {post.readTime} - {post.category}
+                  </Typography>
+                </CardContent>
+                <Box display="flex" justifyContent="flex-end" padding={2}>
+                  <Button
+                    onClick={() => handleEditPost(post)}
+                    color="primary"
+                    size="small">
+                    Edit
+                  </Button>
+                  <Button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteConfirmation(post.id);
+                    }}
+                    color="error"
+                    size="small">
+                    Delete
+                  </Button>
+                </Box>
+              </Card>
+            </Grid>
+          ))
+        ) : (
+          <Grid item xs={12}>
+            <Typography variant="h6" align="center" color="text.secondary">
+              No posts found. Try searching for something else or add a new
+              post!
+            </Typography>
+          </Grid>
+        )}
+      </Grid>
+
+      {/* Full Post Modal */}
+      <Dialog
+        open={openPostModal}
+        onClose={() => setOpenPostModal(false)}
+        maxWidth="lg"
+        fullWidth>
+        <DialogTitle>{selectedPost?.title}</DialogTitle>
+        <DialogContent>
+          <Typography variant="body1" paragraph>
+            {selectedPost?.fullContent}
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenPostModal(false)} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
   );
 };
 

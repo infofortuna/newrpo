@@ -6,7 +6,8 @@ import Contact from "./components/Contact";
 import Services from "./components/Services";
 import Products from "./components/Products";
 import Dashboard from "./components/Dashboard";
-import BlogPage from "./blog/BlogPage";
+import Blog from "./blog/Blog";
+// import BlogPage from "./blog/BlogPage";
 import Footter from "./components/Footter";
 import Pricing from "./components/Pricing";
 
@@ -21,7 +22,8 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog" element={<Blog />} />
+        {/* <Route path="/blog/:id" element={<BlogPage />} /> */}
         <Route path="/pricing" element={<Pricing />} />
       </Routes>
       <Footter />
