@@ -71,7 +71,13 @@ function Services() {
   return (
     <Box sx={{ backgroundColor: "gray.100", py: 6 }}>
       <Container maxWidth="lg" ref={servicesRef}>
-        <Typography variant="h4" align="center" color="indigo.600" gutterBottom>
+        <Typography
+          variant="h4"
+          align="center"
+          color="indigo.600"
+          gutterBottom
+          sx={{ fontSize: { xs: "1.5rem", sm: "2rem", md: "2.2rem" } }} // Responsive font size
+        >
           Our Services
         </Typography>
         <Typography
@@ -79,7 +85,8 @@ function Services() {
           align="center"
           color="gray.950"
           gutterBottom
-          sx={{ mt: 2 }}>
+          sx={{ mt: 2, fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.7rem" } }} // Responsive font size
+        >
           &quot;Your Trusted Partner in Global Trade Solutions.&quot;
         </Typography>
         <Grid container spacing={4} justifyContent="center" sx={{ mt: 4 }}>
@@ -107,18 +114,36 @@ function Services() {
                 }}
               />
               <CardContent>
-                <Typography variant="h6" color="gray.800">
+                <Typography
+                  variant="h6"
+                  color="gray.800"
+                  sx={{ fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" } }}>
                   Sourcing Services
                 </Typography>
-                <Typography color="gray.600" paragraph>
+                <Typography
+                  color="gray.600"
+                  paragraph
+                  sx={{
+                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                  }}>
                   <strong>Local Expertise:</strong> Deep connections with
                   manufacturers and suppliers across various sectors.
                 </Typography>
-                <Typography color="gray.600" paragraph>
+                <Typography
+                  color="gray.600"
+                  paragraph
+                  sx={{
+                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                  }}>
                   <strong>Quality Control:</strong> Stringent quality
                   assessments to ensure only the best products are selected.
                 </Typography>
-                <Typography color="gray.600" paragraph>
+                <Typography
+                  color="gray.600"
+                  paragraph
+                  sx={{
+                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                  }}>
                   <strong>Customization:</strong> Ability to source specific
                   varieties and grades as per client requirements.
                 </Typography>
@@ -150,18 +175,36 @@ function Services() {
                 }}
               />
               <CardContent>
-                <Typography variant="h6" color="gray.800">
+                <Typography
+                  variant="h6"
+                  color="gray.800"
+                  sx={{ fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" } }}>
                   Export Services
                 </Typography>
-                <Typography color="gray.600" paragraph>
+                <Typography
+                  color="gray.600"
+                  paragraph
+                  sx={{
+                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                  }}>
                   <strong>Logistics Management:</strong> Efficient handling of
                   shipping, documentation, and customs clearance.
                 </Typography>
-                <Typography color="gray.600" paragraph>
+                <Typography
+                  color="gray.600"
+                  paragraph
+                  sx={{
+                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                  }}>
                   <strong>Timely Delivery:</strong> Reliable timelines to ensure
                   your orders arrive when needed.
                 </Typography>
-                <Typography color="gray.600" paragraph>
+                <Typography
+                  color="gray.600"
+                  paragraph
+                  sx={{
+                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                  }}>
                   <strong>Secure Packaging:</strong> Advanced packaging
                   solutions to maintain product quality during transit.
                 </Typography>
@@ -193,14 +236,27 @@ function Services() {
                 }}
               />
               <CardContent>
-                <Typography variant="h6" color="gray.800">
+                <Typography
+                  variant="h6"
+                  color="gray.800"
+                  sx={{ fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" } }}>
                   Consulting Services
                 </Typography>
-                <Typography color="gray.600" paragraph>
+                <Typography
+                  color="gray.600"
+                  paragraph
+                  sx={{
+                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                  }}>
                   <strong>Market Insights:</strong> Providing clients with
                   valuable information on global trade trends and demands.
                 </Typography>
-                <Typography color="gray.600" paragraph>
+                <Typography
+                  color="gray.600"
+                  paragraph
+                  sx={{
+                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                  }}>
                   <strong>Regulatory Assistance:</strong> Guidance on compliance
                   with international trade regulations and standards.
                 </Typography>
@@ -211,7 +267,11 @@ function Services() {
 
         {/* Why Our Services Stand Out Section */}
         <Box mt={8} textAlign="center">
-          <Typography variant="h5" color="gray.800" gutterBottom>
+          <Typography
+            variant="h5"
+            color="gray.800"
+            gutterBottom
+            sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.7rem" } }}>
             Why Our Services Stand Out
           </Typography>
           <Grid container spacing={4} justifyContent="center">
@@ -223,10 +283,18 @@ function Services() {
                   transition: "box-shadow 0.3s",
                   "&:hover": { boxShadow: 3 },
                 }}>
-                <Typography variant="h6" color="indigo.600" gutterBottom>
+                <Typography
+                  variant="h6"
+                  color="indigo.600"
+                  gutterBottom
+                  sx={{ fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" } }}>
                   Efficiency
                 </Typography>
-                <Typography color="gray.600">
+                <Typography
+                  color="gray.600"
+                  sx={{
+                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                  }}>
                   Streamlined processes that minimize delays and maximize
                   productivity.
                 </Typography>
@@ -240,10 +308,18 @@ function Services() {
                   transition: "box-shadow 0.3s",
                   "&:hover": { boxShadow: 3 },
                 }}>
-                <Typography variant="h6" color="indigo.600" gutterBottom>
+                <Typography
+                  variant="h6"
+                  color="indigo.600"
+                  gutterBottom
+                  sx={{ fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" } }}>
                   Reliability
                 </Typography>
-                <Typography color="gray.600">
+                <Typography
+                  color="gray.600"
+                  sx={{
+                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                  }}>
                   Consistent delivery of high-quality products you can trust.
                 </Typography>
               </Card>
@@ -256,10 +332,18 @@ function Services() {
                   transition: "box-shadow 0.3s",
                   "&:hover": { boxShadow: 3 },
                 }}>
-                <Typography variant="h6" color="indigo.600" gutterBottom>
+                <Typography
+                  variant="h6"
+                  color="indigo.600"
+                  gutterBottom
+                  sx={{ fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" } }}>
                   Customer Support
                 </Typography>
-                <Typography color="gray.600">
+                <Typography
+                  color="gray.600"
+                  sx={{
+                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                  }}>
                   Dedicated support team to assist you at every step.
                 </Typography>
               </Card>
@@ -268,7 +352,10 @@ function Services() {
         </Box>
 
         <Box mt={8} textAlign="center">
-          <Typography variant="body1" color="gray.600">
+          <Typography
+            variant="body1"
+            color="gray.600"
+            sx={{ fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" } }}>
             At Fortuna Enterprise, we pride ourselves on our commitment to
             excellence and customer satisfaction. Contact us today to learn more
             about how we can assist you in your business endeavors.

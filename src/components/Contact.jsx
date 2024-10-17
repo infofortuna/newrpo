@@ -57,89 +57,6 @@ function ContactUs() {
           width: { xs: "100%", md: "80%", lg: "70%" },
           overflow: "hidden",
         }}>
-        {/* Left Side: Get in Touch Section */}
-        <Grid item xs={12} md={6}>
-          <Box
-            sx={{
-              p: 4,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "flex-start",
-              backgroundColor: "#00796b",
-              color: "white",
-              borderRadius: "lg",
-              boxShadow: 1,
-            }}>
-            <Avatar
-              alt="Fortuna Enterprise"
-              src="/path/to/logo.jpg"
-              sx={{ mb: 2, width: 60, height: 60 }}
-            />
-            <Typography
-              variant="h5"
-              sx={{
-                fontWeight: "bold",
-                fontSize: { xs: "1.5rem", md: "1.75rem" },
-              }}>
-              Get in Touch
-            </Typography>
-            <Typography sx={{ mb: 2, fontSize: { xs: "0.9rem", md: "1rem" } }}>
-              We’re here to assist you with all your import-export needs. Reach
-              out to us through any of the following methods:
-            </Typography>
-            <Divider sx={{ mb: 2, backgroundColor: "whiteAlpha.400" }} />
-            <Typography fontWeight="bold">Contact Information:</Typography>
-            <Typography>
-              • Address: Your Company Address, City, India
-            </Typography>
-            <Typography>• Phone: +91-7506615066</Typography>
-            <Typography>
-              • Email:{" "}
-              <span style={{ color: "#ffeb3b", textDecoration: "underline" }}>
-                info@fortunaenterprise.in
-              </span>
-            </Typography>
-            <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
-              <IconButton color="inherit" href="#" aria-label="Facebook">
-                <FaFacebook />
-              </IconButton>
-              <IconButton color="inherit" href="#" aria-label="Twitter">
-                <FaTwitter />
-              </IconButton>
-              <IconButton
-                color="inherit"
-                href="https://www.linkedin.com/in/mahesh-gulechaa-941867210"
-                target="_blank"
-                aria-label="LinkedIn">
-                <FaLinkedin />
-              </IconButton>
-              <IconButton color="inherit" href="#" aria-label="Instagram">
-                <FaInstagram />
-              </IconButton>
-            </Stack>
-            {/* Google Map */}
-            <Box
-              sx={{
-                mt: 3,
-                width: "100%",
-                height: "200px",
-                borderRadius: "lg",
-                overflow: "hidden",
-              }}>
-              <iframe
-                title="Google Map"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15887.12599008619!2d73.1659085!3d22.3176504!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8b84cad1c5f%3A0x5f36b27a05260b16!2sAtlantis%20K10!5e0!3m2!1sen!2sus!4v1697762919003!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-              />
-            </Box>
-          </Box>
-        </Grid>
-
         {/* Right Side: Contact Form Section */}
         <Grid item xs={12} md={6}>
           <Box sx={{ p: 4 }}>
@@ -147,7 +64,7 @@ function ContactUs() {
               variant="h5"
               sx={{
                 fontWeight: "bold",
-                fontSize: { xs: "1.5rem", md: "1.75rem" },
+                fontSize: { xs: "1.35rem", md: "1.575rem" }, // Adjusted font size
               }}>
               Contact Us
             </Typography>
@@ -251,6 +168,90 @@ function ContactUs() {
                 </form>
               )}
             </Formik>
+          </Box>
+        </Grid>
+
+        {/* Left Side: Get in Touch Section */}
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              p: 4,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "flex-start",
+              backgroundColor: "#00796b",
+              color: "white",
+              borderRadius: "lg",
+              boxShadow: 1,
+            }}>
+            <Avatar
+              alt="Fortuna Enterprise"
+              src="/path/to/logo.jpg"
+              sx={{ mb: 2, width: 60, height: 60 }}
+            />
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: "bold",
+                fontSize: { xs: "1.35rem", md: "1.575rem" }, // Adjusted font size
+              }}>
+              Get in Touch
+            </Typography>
+            <Typography
+              sx={{ mb: 2, fontSize: { xs: "0.81rem", md: "0.9rem" } }}>
+              We’re here to assist you with all your import-export needs. Reach
+              out to us through any of the following methods:
+            </Typography>
+            <Divider sx={{ mb: 2, backgroundColor: "whiteAlpha.400" }} />
+            <Typography fontWeight="bold">Contact Information:</Typography>
+            <Typography>
+              • Address: Your Company Address, City, India
+            </Typography>
+            <Typography>• Phone: +91-7506615066</Typography>
+            <Typography>
+              • Email:{" "}
+              <span style={{ color: "#ffeb3b", textDecoration: "underline" }}>
+                info@fortunaenterprise.in
+              </span>
+            </Typography>
+            <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+              <IconButton color="inherit" href="#" aria-label="Facebook">
+                <FaFacebook />
+              </IconButton>
+              <IconButton color="inherit" href="#" aria-label="Twitter">
+                <FaTwitter />
+              </IconButton>
+              <IconButton
+                color="inherit"
+                href="https://www.linkedin.com/in/mahesh-gulechaa-941867210"
+                target="_blank"
+                aria-label="LinkedIn">
+                <FaLinkedin />
+              </IconButton>
+              <IconButton color="inherit" href="#" aria-label="Instagram">
+                <FaInstagram />
+              </IconButton>
+            </Stack>
+            {/* Google Map */}
+            <Box
+              sx={{
+                mt: 3,
+                width: "100%",
+                height: "200px",
+                borderRadius: "lg",
+                overflow: "hidden",
+              }}>
+              <iframe
+                title="Google Map"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15887.12599008619!2d73.1659085!3d22.3176504!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8b84cad1c5f%3A0x5f36b27a05260b16!2sAtlantis%20K10!5e0!3m2!1sen!2sus!4v1697762919003!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+              />
+            </Box>
           </Box>
         </Grid>
       </Grid>

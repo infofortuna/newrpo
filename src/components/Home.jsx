@@ -83,7 +83,7 @@ export default function Example() {
         <Box
           sx={{
             height: "100vh",
-            backgroundImage: "url('heroImage1.avif')",
+            backgroundImage: "url('import.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             position: "relative",
@@ -112,18 +112,26 @@ export default function Example() {
               variant="h1"
               ref={titleRef}
               sx={{
-                fontSize: { xs: "2rem", md: "4rem" },
+                fontSize: { xs: "2rem", md: "4rem" }, // Responsive font sizes
                 textAlign: "center",
                 mb: 2,
               }}>
               Welcome to Fortuna Enterprise
             </Typography>
-            <Typography variant="h5" ref={subtitleRef} sx={{ mb: 1 }}>
-              Your Premier Partner in Global Import-Export Solutions
+            <Typography
+              variant="h5"
+              ref={subtitleRef}
+              sx={{
+                fontSize: { xs: "1.2rem", md: "2rem" }, // Responsive font sizes
+                mb: 1,
+              }}>
+              Your Trusted Partner in Agricultural and Organic Goods
             </Typography>
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              Specializing in Quality Spice Sourcing, Textiles, and Consumer
-              Goods
+            <Typography
+              variant="body1"
+              sx={{ fontSize: { xs: "0.875rem", sm: "1rem" }, mb: 2 }} // Responsive font sizes
+            >
+              Specializing in Quality Organic Produce and Agricultural Products
             </Typography>
             <Button
               variant="contained"
@@ -131,19 +139,27 @@ export default function Example() {
               ref={ctaRef}
               sx={{ mb: 2 }}
               href="/services">
-              Discover Our Services
+              Discover Our Organic Solutions
             </Button>
             <Box
               ref={paragraphRef}
               sx={{ maxWidth: "600px", textAlign: "center" }}>
-              <Typography variant="body2">
-                At Fortuna Enterprise, we connect businesses worldwide with
-                high-quality products. Our commitment to excellence and customer
-                satisfaction is at the heart of everything we do.
+              <Typography
+                variant="body2"
+                sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }} // Responsive font sizes
+              >
+                At Fortuna Enterprise, we are dedicated to connecting businesses
+                worldwide with premium agricultural and organic products. Our
+                commitment to sustainable practices and customer satisfaction
+                drives us in every partnership we forge.
               </Typography>
-              <Typography variant="body2">
-                Explore our diverse offerings, including agricultural products.
-                Let us be your trusted partner in global trade!
+              <Typography
+                variant="body2"
+                sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }} // Responsive font sizes
+              >
+                Explore our diverse offerings, including organic fruits,
+                vegetables, and more. Let us be your trusted partner in the
+                global agricultural trade!
               </Typography>
             </Box>
           </Container>

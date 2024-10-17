@@ -15,6 +15,10 @@ import {
 import { ExpandMore } from "@mui/icons-material";
 import gsap from "gsap";
 import { Link } from "react-router-dom";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register GSAP ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 function About() {
   const aboutRef = useRef(null);
@@ -25,6 +29,7 @@ function About() {
     const cards = aboutRef.current.querySelectorAll(".about-card");
     const faqs = faqRef.current.querySelectorAll(".faq-item");
 
+    // Animate About Cards
     gsap.fromTo(
       cards,
       { opacity: 0, y: 30 },
@@ -36,33 +41,46 @@ function About() {
       }
     );
 
-    gsap.fromTo(
-      faqs,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.1,
-      }
-    );
+    // Animate FAQ Items on Scroll
+    faqs.forEach((faq) => {
+      gsap.fromTo(
+        faq,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          scrollTrigger: {
+            trigger: faq,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
   }, []);
 
   return (
-    <Box sx={{ bgcolor: "background.default", minHeight: "100vh", py: 12 }}>
+    <Box sx={{ bgcolor: "background.default", minHeight: "100vh", py: 8 }}>
       <Container maxWidth="lg" ref={aboutRef}>
         <Typography
           variant="h2"
           align="center"
           gutterBottom
-          color="primary.main">
+          color="primary.main"
+          sx={{
+            fontSize: { xs: "1.8rem", md: "2rem" }, // Adjusted size for responsiveness
+          }}>
           Welcome to Fortuna Enterprise
         </Typography>
         <Typography
           variant="body1"
           align="center"
           gutterBottom
-          color="text.secondary">
+          color="text.secondary"
+          sx={{
+            fontSize: { xs: "0.9rem", md: "1rem" }, // 10% smaller on smaller screens
+          }}>
           We simplify the complexities of global trade, connecting businesses
           with exceptional sourcing and logistics solutions to foster
           international growth.
@@ -70,172 +88,74 @@ function About() {
 
         <Grid container spacing={4} sx={{ mt: 4 }}>
           {/* Card Settings */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              className="about-card"
-              variant="outlined"
-              sx={{
-                height: "100%", // Ensure all cards are the same height
-                display: "flex", // Flexbox to align content
-                flexDirection: "column", // Stack content vertically
-                transition: "0.3s",
-                "&:hover": {
-                  boxShadow: 6,
-                  transform: "scale(1.05)", // Slight scale effect
-                },
-              }}>
-              <CardContent sx={{ flexGrow: 1 }}>
-                {" "}
-                {/* Flex-grow to fill space */}
-                <Typography variant="h5" align="center" color="primary.main">
-                  Our Mission
-                </Typography>
-                <Typography color="text.secondary" align="center">
-                  To provide high-quality agricultural and organic products that
-                  drive successful global trade.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          {/* Vision Card */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              className="about-card"
-              variant="outlined"
-              sx={{
-                height: "100%", // Ensure all cards are the same height
-                display: "flex",
-                flexDirection: "column",
-                transition: "0.3s",
-                "&:hover": {
-                  boxShadow: 6,
-                  transform: "scale(1.05)",
-                },
-              }}>
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h5" align="center" color="primary.main">
-                  Our Vision
-                </Typography>
-                <Typography color="text.secondary" align="center">
-                  To be the leading facilitator of international trade in
-                  agricultural goods, recognized for our commitment to
-                  excellence and sustainability.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          {/* Values Card */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              className="about-card"
-              variant="outlined"
-              sx={{
-                height: "100%", // Ensure all cards are the same height
-                display: "flex",
-                flexDirection: "column",
-                transition: "0.3s",
-                "&:hover": {
-                  boxShadow: 6,
-                  transform: "scale(1.05)",
-                },
-              }}>
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h5" align="center" color="primary.main">
-                  Our Values
-                </Typography>
-                <Typography color="text.secondary" align="center">
-                  Integrity, quality, and reliability guide every aspect of our
-                  operations, ensuring trust and satisfaction in agricultural
-                  trade.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          {/* Expert Team Card */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              className="about-card"
-              variant="outlined"
-              sx={{
-                height: "100%", // Ensure all cards are the same height
-                display: "flex",
-                flexDirection: "column",
-                transition: "0.3s",
-                "&:hover": {
-                  boxShadow: 6,
-                  transform: "scale(1.05)",
-                },
-              }}>
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h5" align="center" color="primary.main">
-                  Expert Team
-                </Typography>
-                <Typography color="text.secondary" align="center">
-                  Our experienced professionals are dedicated to providing
-                  tailored solutions that meet your agricultural and organic
-                  goods needs.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          {/* Innovative Solutions Card */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              className="about-card"
-              variant="outlined"
-              sx={{
-                height: "100%", // Ensure all cards are the same height
-                display: "flex",
-                flexDirection: "column",
-                transition: "0.3s",
-                "&:hover": {
-                  boxShadow: 6,
-                  transform: "scale(1.05)",
-                },
-              }}>
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h5" align="center" color="primary.main">
-                  Innovative Solutions
-                </Typography>
-                <Typography color="text.secondary" align="center">
-                  We leverage the latest technologies to streamline processes
-                  and enhance efficiency in global agricultural trade.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          {/* Customer Focus Card */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              className="about-card"
-              variant="outlined"
-              sx={{
-                height: "100%", // Ensure all cards are the same height
-                display: "flex",
-                flexDirection: "column",
-                transition: "0.3s",
-                "&:hover": {
-                  boxShadow: 6,
-                  transform: "scale(1.05)",
-                },
-              }}>
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h5" align="center" color="primary.main">
-                  Customer-Centric
-                </Typography>
-                <Typography color="text.secondary" align="center">
-                  Your success is our priority. We work closely with you to
-                  understand your needs and exceed your expectations in the
-                  agricultural sector.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+          {[
+            {
+              title: "Our Mission",
+              description:
+                "To provide high-quality agricultural and organic products that drive successful global trade.",
+            },
+            {
+              title: "Our Vision",
+              description:
+                "To be the leading facilitator of international trade in agricultural goods, recognized for our commitment to excellence and sustainability.",
+            },
+            {
+              title: "Our Values",
+              description:
+                "Integrity, quality, and reliability guide every aspect of our operations, ensuring trust and satisfaction in agricultural trade.",
+            },
+            {
+              title: "Expert Team",
+              description:
+                "Our experienced professionals are dedicated to providing tailored solutions that meet your agricultural and organic goods needs.",
+            },
+            {
+              title: "Innovative Solutions",
+              description:
+                "We leverage the latest technologies to streamline processes and enhance efficiency in global agricultural trade.",
+            },
+            {
+              title: "Customer-Centric",
+              description:
+                "Your success is our priority. We work closely with you to understand your needs and exceed your expectations in the agricultural sector.",
+            },
+          ].map((card, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card
+                className="about-card"
+                variant="outlined"
+                sx={{
+                  height: "100%", // Ensure all cards are the same height
+                  display: "flex", // Flexbox to align content
+                  flexDirection: "column", // Stack content vertically
+                  transition: "0.3s",
+                  "&:hover": {
+                    boxShadow: 6,
+                    transform: "scale(1.05)", // Slight scale effect
+                  },
+                }}>
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography
+                    variant="h5"
+                    align="center"
+                    color="primary.main"
+                    sx={{
+                      fontSize: { xs: "1.35rem", md: "1.5rem" }, // Adjusted size for responsiveness
+                    }}>
+                    {card.title}
+                  </Typography>
+                  <Typography
+                    color="text.secondary"
+                    align="center"
+                    sx={{
+                      fontSize: { xs: "0.9rem", md: "1rem" }, // 10% smaller on smaller screens
+                    }}>
+                    {card.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
 
         <Divider sx={{ my: 6 }} />
@@ -246,24 +166,36 @@ function About() {
             variant="h4"
             align="center"
             gutterBottom
-            color="primary.main">
+            color="primary.main"
+            sx={{
+              fontSize: { xs: "1.75rem", md: "2rem" }, // Adjusted size for responsiveness
+            }}>
             Frequently Asked Questions
           </Typography>
           <Typography
             variant="body1"
             align="center"
             color="text.secondary"
-            gutterBottom>
+            gutterBottom
+            sx={{
+              fontSize: { xs: "0.9rem", md: "1rem" }, // 10% smaller on smaller screens
+            }}>
             Here are some common queries we receive from our clients.
           </Typography>
           <Accordion sx={{ mb: 2 }} defaultExpanded>
             {faqData.map((faq, index) => (
               <Accordion key={index} className="faq-item" variant="outlined">
                 <AccordionSummary expandIcon={<ExpandMore />}>
-                  <Typography fontWeight="bold">{faq.question}</Typography>
+                  <Typography
+                    fontWeight="bold"
+                    sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }}>
+                    {faq.question}
+                  </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>{faq.answer}</Typography>
+                  <Typography sx={{ fontSize: { xs: "0.8rem", md: "0.9rem" } }}>
+                    {faq.answer}
+                  </Typography>
                 </AccordionDetails>
               </Accordion>
             ))}
