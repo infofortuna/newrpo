@@ -8,8 +8,9 @@ import Products from "./components/Products";
 import Dashboard from "./components/Dashboard";
 import Blog from "./blog/Blog";
 import BlogPage from "./blog/BlogPage";
-import Footter from "./components/Footter";
+import Footer from "./components/Footer"; // Corrected spelling
 import Pricing from "./components/Pricing";
+// import NotFound from "./components/NotFound"; // Import 404 component
 
 function App() {
   return (
@@ -25,8 +26,9 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPage />} />
         <Route path="/pricing" element={<Pricing />} />
+        {/* <Route path="*" element={<NotFound />} /> Catch-all route for 404 */}
       </Routes>
-      <Footter />
+      <Footer />
     </Router>
   );
 }

@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Box, Button, Typography, Container } from "@mui/material";
-import { KeyboardArrowRight } from "@mui/icons-material"; // Import an icon for the button
+import { KeyboardArrowRight } from "@mui/icons-material";
 import WhyUs from "./WhyUs";
 import ImportExport from "./ImportExport";
 
@@ -106,7 +106,7 @@ const Home = () => {
             alignItems: "center",
             textAlign: "center",
             padding: { xs: "2rem 1rem", md: "2rem 0" },
-            filter: "brightness(0.9)", // Slightly darken the background
+            filter: "brightness(0.9)",
           }}>
           <Box
             sx={{
@@ -165,14 +165,16 @@ const Home = () => {
                 mb: 2,
                 px: 3,
                 borderRadius: "20px",
-                background: "linear-gradient(to right, #ffb74d, #ff9800)", // Gradient background
+                background: "linear-gradient(to right, #ffb74d, #ff9800)",
                 "&:hover": {
                   background: "linear-gradient(to right, #ff9800, #ffb74d)",
                 },
                 display: "flex",
                 alignItems: "center",
               }}
-              href="/services">
+              href="/services"
+              aria-label="Discover Our Organic Solutions" // Added aria-label for accessibility
+            >
               <KeyboardArrowRight sx={{ mr: 1 }} />
               Discover Our Organic Solutions
             </Button>

@@ -4,7 +4,6 @@ import { useEffect, forwardRef } from "react";
 import gsap from "gsap";
 
 const ImportExport = forwardRef((_, ref) => {
-  // Removed props
   // Animation for Import/Export Section
   useEffect(() => {
     gsap.fromTo(
@@ -26,7 +25,7 @@ const ImportExport = forwardRef((_, ref) => {
 
   return (
     <Box
-      ref={ref} // Use the forwarded ref
+      ref={ref}
       sx={{
         bgcolor: "#f0f0f0",
         borderRadius: "8px",
@@ -96,7 +95,7 @@ const ImportExport = forwardRef((_, ref) => {
                   Export
                 </Typography>
                 <Box sx={{ height: "2px", bgcolor: "gray", my: 1 }} />
-                <ul>
+                <ul style={{ listStyleType: "none", padding: 0 }}>
                   {[
                     "Best approach for your company.",
                     "Sales to GCC, Africa, South-East Asia.",
@@ -107,7 +106,7 @@ const ImportExport = forwardRef((_, ref) => {
                   ].map((text, index) => (
                     <li
                       key={index}
-                      style={{ display: "flex", alignItems: "center" }}>
+                      style={{ display: "flex", alignItems: "center", mb: 1 }}>
                       <FaCheckCircle
                         style={{ color: "#1976d2", marginRight: "8px" }}
                       />
@@ -134,7 +133,7 @@ const ImportExport = forwardRef((_, ref) => {
                   Import
                 </Typography>
                 <Box sx={{ height: "2px", bgcolor: "gray", my: 1 }} />
-                <ul>
+                <ul style={{ listStyleType: "none", padding: 0 }}>
                   {[
                     "We find the best suppliers for you.",
                     "Negotiation of delivery terms.",
@@ -144,7 +143,7 @@ const ImportExport = forwardRef((_, ref) => {
                   ].map((text, index) => (
                     <li
                       key={index}
-                      style={{ display: "flex", alignItems: "center" }}>
+                      style={{ display: "flex", alignItems: "center", mb: 1 }}>
                       <FaCheckCircle
                         style={{ color: "#1976d2", marginRight: "8px" }}
                       />
