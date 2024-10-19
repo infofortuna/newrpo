@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import PropTypes from "prop-types"; // Import PropTypes for props validation
 import {
   AppBar,
   Toolbar,
@@ -17,11 +18,11 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"; // Import the up arrow icon
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"; 
 import { useTheme } from "@mui/material/styles";
 import "./styles.css"; // Import your CSS file
 
-export default function EnhancedNavbar() {
+const EnhancedNavbar = () => {
   const location = useLocation();
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
@@ -40,111 +41,113 @@ export default function EnhancedNavbar() {
   // Show "Scroll to Top" button on scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 100) {
-        // Adjust this value as needed
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
+      setShowScrollTop(window.scrollY > 100);
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Meta tags and title setup
   useEffect(() => {
-    const pageTitle =
-      location.pathname === "/"
-        ? "Home"
-        : location.pathname.charAt(1).toUpperCase() +
-          location.pathname.slice(2);
-
+    const pageTitle = location.pathname === "/" ? "Home" : location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2);
     const titlePrefix = "Fortuna Enterprise";
     const titleSuffix = " | Quality Import-Export Solutions";
-
     document.title = `${titlePrefix} - ${pageTitle} ${titleSuffix}`;
-
-    const metaTags =
-      {
-        "/": {
-          keywords:
-            "import-export, global trade, Fortuna Enterprise, trade solutions, quality products",
-          description:
-            "Fortuna Enterprise is your premier partner in global import-export solutions. Explore our services today!",
-        },
-        "/about": {
-          keywords:
-            "about Fortuna Enterprise, import-export services, company mission, global trade experts",
-          description:
-            "Learn more about Fortuna Enterprise and our commitment to quality and service in global trade.",
-        },
-        "/products": {
-          keywords:
-            "import-export products, agricultural goods, textiles, consumer electronics, quality imports",
-          description:
-            "Explore our wide range of high-quality import-export products including agricultural goods and electronics.",
-        },
-        "/services": {
-          keywords:
-            "import-export services, logistics management, sourcing solutions, trade consulting",
-          description:
-            "Discover our comprehensive import-export services tailored for your business needs and growth.",
-        },
-        "/contact": {
-          keywords:
-            "contact Fortuna Enterprise, customer support, inquiries, trade assistance",
-          description:
-            "Get in touch with Fortuna Enterprise for all your import-export inquiries and support.",
-        },
-        "/blog": {
-          keywords:
-            "Fortuna Enterprise blog, import-export insights, industry news, expert advice",
-          description:
-            "Read the Fortuna Enterprise blog for the latest insights on import-export and industry trends.",
-        },
-        "/dashboard": {
-          keywords:
-            "dashboard, admin panel, manage blog posts, user management",
-          description:
-            "Admin Dashboard for managing blog posts and user access.",
-        },
-      }[location.pathname] || {};
-
-    // Update or create meta tags
-    let metaKeywordsElement = document.querySelector('meta[name="keywords"]');
-    let metaDescriptionElement = document.querySelector(
-      'meta[name="description"]'
-    );
-
-    if (!metaKeywordsElement) {
-      metaKeywordsElement = document.createElement("meta");
-      metaKeywordsElement.name = "keywords";
-      document.head.appendChild(metaKeywordsElement);
-    }
-
+  
+    const metaTags = {
+      "/": {
+        description: "Fortuna Enterprise is your premier partner in global import-export solutions. Explore our services today!",
+      },
+      "/about": {
+        description: "Learn more about Fortuna Enterprise and our commitment to quality and service in global trade.",
+      },
+      "/products": {
+        description: "Explore our wide range of high-quality import-export products including agricultural goods and electronics.",
+      },
+      "/services": {
+        description: "Discover our comprehensive import-export services tailored for your business needs and growth.",
+      },
+      "/contact": {
+        description: "Get in touch with Fortuna Enterprise for all your import-export inquiries and support.",
+      },
+      "/blog": {
+        description: "Read the Fortuna Enterprise blog for the latest insights on import-export and industry trends.",
+      },
+      "/dashboard": {
+        description: "Admin Dashboard for managing blog posts and user access.",
+      },
+    }[location.pathname] || {};
+  
+    let metaDescriptionElement = document.querySelector('meta[name="description"]');
+  
     if (!metaDescriptionElement) {
       metaDescriptionElement = document.createElement("meta");
       metaDescriptionElement.name = "description";
       document.head.appendChild(metaDescriptionElement);
     }
-
-    metaKeywordsElement.setAttribute("content", metaTags.keywords);
+  
     metaDescriptionElement.setAttribute("content", metaTags.description);
-
+  
+    // Open Graph Tags
+    const ogTags = {
+      "/": {
+        title: "Welcome to Fortuna Enterprise",
+        type: "website",
+        url: window.location.href,
+        image: "/path-to-your-image.jpg", // Replace with your image path
+      },
+      // Add other routes as needed...
+    }[location.pathname] || {};
+  
+    let ogTitleElement = document.querySelector('meta[property="og:title"]');
+    let ogTypeElement = document.querySelector('meta[property="og:type"]');
+    let ogUrlElement = document.querySelector('meta[property="og:url"]');
+    let ogImageElement = document.querySelector('meta[property="og:image"]');
+  
+    if (!ogTitleElement) {
+      ogTitleElement = document.createElement("meta");
+      ogTitleElement.property = "og:title";
+      document.head.appendChild(ogTitleElement);
+    }
+  
+    if (!ogTypeElement) {
+      ogTypeElement = document.createElement("meta");
+      ogTypeElement.property = "og:type";
+      document.head.appendChild(ogTypeElement);
+    }
+  
+    if (!ogUrlElement) {
+      ogUrlElement = document.createElement("meta");
+      ogUrlElement.property = "og:url";
+      document.head.appendChild(ogUrlElement);
+    }
+  
+    if (!ogImageElement) {
+      ogImageElement = document.createElement("meta");
+      ogImageElement.property = "og:image";
+      document.head.appendChild(ogImageElement);
+    }
+  
+    ogTitleElement.setAttribute("content", ogTags.title);
+    ogTypeElement.setAttribute("content", ogTags.type);
+    ogUrlElement.setAttribute("content", ogTags.url);
+    ogImageElement.setAttribute("content", ogTags.image);
+  
     return () => {
       // Optionally clear or reset meta tags on unmount
-      metaKeywordsElement.removeAttribute("content");
       metaDescriptionElement.removeAttribute("content");
+      ogTitleElement.removeAttribute("content");
+      ogTypeElement.removeAttribute("content");
+      ogUrlElement.removeAttribute("content");
+      ogImageElement.removeAttribute("content");
     };
   }, [location]);
-
+  
   const isAdmin = true; // Replace with actual admin check logic
 
   const menuItems = [
@@ -159,19 +162,11 @@ export default function EnhancedNavbar() {
 
   return (
     <>
-      <AppBar
-        position="sticky"
-        style={{ backgroundColor: "#ffffff", color: "#333" }}>
+      <AppBar position="sticky" style={{ backgroundColor: "#ffffff", color: "#333" }}>
         <Toolbar className="container mx-auto flex justify-between items-center px-4 py-2">
           <Typography variant="h6" style={{ color: "#333" }}>
-            <Link
-              to="/"
-              className="flex items-center no-underline hover:no-underline">
-              <img
-                src="/company-logo-png.png"
-                alt="Fortuna Enterprise Company Logo"
-                className="h-8 mr-2"
-              />
+            <Link to="/" className="flex items-center no-underline hover:no-underline">
+              <img src="/company-logo-png.png" alt="Fortuna Enterprise Company Logo" className="h-8 mr-2" />
               <span className="text-xl">Fortuna Enterprise</span>
             </Link>
           </Typography>
@@ -184,17 +179,12 @@ export default function EnhancedNavbar() {
                 to={item.path}
                 style={{
                   color: location.pathname === item.path ? "#1E40AF" : "#333",
-                  fontWeight:
-                    location.pathname === item.path ? "bold" : "normal",
-                  textDecoration:
-                    location.pathname === item.path ? "underline" : "none",
+                  fontWeight: location.pathname === item.path ? "bold" : "normal",
+                  textDecoration: location.pathname === item.path ? "underline" : "none",
                   transition: "color 0.3s",
                 }}
                 onMouseEnter={(e) => (e.target.style.color = "#1E40AF")}
-                onMouseLeave={(e) =>
-                  (e.target.style.color =
-                    location.pathname === item.path ? "#1E40AF" : "#333")
-                }>
+                onMouseLeave={(e) => (e.target.style.color = location.pathname === item.path ? "#1E40AF" : "#333")}>
                 {item.label}
               </Button>
             ))}
@@ -217,27 +207,16 @@ export default function EnhancedNavbar() {
           </Button>
 
           {isMobile && (
-            <IconButton
-              edge="end"
-              aria-label="menu"
-              onClick={toggleDrawer}
-              style={{ color: "#333", marginLeft: "8px" }}>
+            <IconButton edge="end" aria-label="menu" onClick={toggleDrawer} style={{ color: "#333", marginLeft: "8px" }}>
               <MenuIcon />
             </IconButton>
           )}
         </Toolbar>
 
         <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer}>
-          <div
-            style={{
-              width: "250px",
-              padding: "16px",
-              backgroundColor: "#f9f9f9",
-            }}>
+          <div style={{ width: "250px", padding: "16px", backgroundColor: "#f9f9f9" }}>
             <div className="flex justify-between items-center mb-4">
-              <Typography
-                variant="h6"
-                style={{ fontWeight: "bold", color: "#333" }}>
+              <Typography variant="h6" style={{ fontWeight: "bold", color: "#333" }}>
                 Menu
               </Typography>
               <IconButton aria-label="close menu" onClick={toggleDrawer}>
@@ -253,21 +232,14 @@ export default function EnhancedNavbar() {
                   onClick={toggleDrawer}
                   component={Link}
                   to={item.path}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor = "#e0e0e0")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = "transparent")
-                  }
-                  aria-label={`Navigate to ${item.label}`} // Accessibility improvement
-                >
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#e0e0e0")}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+                  aria-label={`Navigate to ${item.label}`}>
                   <ListItemText>
                     <span
                       style={{
-                        color:
-                          location.pathname === item.path ? "#1E40AF" : "#333",
-                        fontWeight:
-                          location.pathname === item.path ? "bold" : "normal",
+                        color: location.pathname === item.path ? "#1E40AF" : "#333",
+                        fontWeight: location.pathname === item.path ? "bold" : "normal",
                       }}>
                       {item.label}
                     </span>
@@ -288,23 +260,20 @@ export default function EnhancedNavbar() {
             bottom: "16px",
             right: "16px",
             backgroundColor: "#1E40AF",
-            color: "#fff",
-            borderRadius: "50%", // Ensures the button is round
-            width: "56px", // Slightly increased for better visibility
-            height: "56px", // Make sure width and height are equal for a round shape
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-            transition: "background-color 0.3s",
-            zIndex: 1000, // Ensure it appears above other elements
-          }}
-          onMouseEnter={(e) => (e.target.style.backgroundColor = "#1D4ED8")}
-          onMouseLeave={(e) => (e.target.style.backgroundColor = "#1E40AF")}
-          aria-label="Scroll to Top">
+            color: "#ffffff",
+            borderRadius: "50%",
+            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
+          }}>
           <KeyboardArrowUpIcon />
         </Button>
       )}
     </>
   );
-}
+};
+
+// Prop Types for validation
+EnhancedNavbar.propTypes = {
+  logoSrc: PropTypes.string.isRequired,
+};
+
+export default EnhancedNavbar;
