@@ -92,11 +92,15 @@ const Home = () => {
 
   return (
     <>
-      <header className="text-center relative overflow-hidden" ref={heroRef}>
+      <header
+        className="text-center relative overflow-hidden"
+        role="banner"
+        ref={heroRef}
+      >
         <Box
           sx={{
             height: { xs: "80vh", md: "100vh" },
-            backgroundImage: "url('import.webp')",
+            backgroundImage: "url('bg.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             position: "relative",
@@ -106,8 +110,10 @@ const Home = () => {
             alignItems: "center",
             textAlign: "center",
             padding: { xs: "2rem 1rem", md: "2rem 0" },
-            filter: "brightness(0.9)",
-          }}>
+            filter: "brightness(0.9)", // Adjust brightness for better readability
+          }}
+        >
+          {/* Semi-transparent overlay */}
           <Box
             sx={{
               position: "absolute",
@@ -115,9 +121,7 @@ const Home = () => {
               left: 0,
               right: 0,
               bottom: 0,
-              bgcolor: "transparent",
-              background:
-                "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8))",
+              backgroundColor: "rgba(0, 0, 0, 0.2)", // Darker overlay with 50% opacity
             }}
           />
           <Container
@@ -128,8 +132,9 @@ const Home = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              color: "white",
-            }}>
+              color: "white", // Changed text color to slate white for better visibility
+            }}
+          >
             <Typography
               variant="h1"
               ref={titleRef}
@@ -137,24 +142,27 @@ const Home = () => {
                 fontSize: { xs: "2.5rem", md: "4rem" },
                 mb: 1,
                 lineHeight: { xs: "1.2", md: "1.2" },
-                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-              }}>
+                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)", // Added text shadow for better contrast
+              }}
+            >
               Welcome to Fortuna Enterprise
             </Typography>
             <Typography
-              variant="h5"
+              variant="h2" // Changed to h2 for better heading structure
               ref={subtitleRef}
               sx={{
                 fontSize: { xs: "1.5rem", md: "2.5rem" },
                 mb: 1,
                 lineHeight: { xs: "1.3", md: "1.3" },
-                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-              }}>
+                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)", // Added text shadow for better contrast
+              }}
+            >
               Your Trusted Partner in Agricultural and Organic Goods
             </Typography>
             <Typography
               variant="body1"
-              sx={{ fontSize: { xs: "0.875rem", sm: "1rem" }, mb: 2 }}>
+              sx={{ fontSize: { xs: "0.875rem", sm: "1rem" }, mb: 2 }}
+            >
               Specializing in Quality Organic Produce and Agricultural Products
             </Typography>
             <Button
@@ -173,17 +181,23 @@ const Home = () => {
                 alignItems: "center",
               }}
               href="/services"
-              aria-label="Discover Our Organic Solutions" // Added aria-label for accessibility
+              aria-label="Discover Our Organic Solutions"
             >
               <KeyboardArrowRight sx={{ mr: 1 }} />
               Discover Our Organic Solutions
             </Button>
             <Box
               ref={paragraphRef}
-              sx={{ maxWidth: "600px", textAlign: "center" }}>
+              sx={{ maxWidth: "600px", textAlign: "center" }}
+            >
               <Typography
                 variant="body2"
-                sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" }, mb: 1 }}>
+                sx={{
+                  fontSize: { xs: "0.75rem", sm: "0.875rem" },
+                  mb: 1,
+                  color: "white",
+                }} // Set to white for better visibility
+              >
                 At Fortuna Enterprise, we are dedicated to connecting businesses
                 worldwide with premium agricultural and organic products. Our
                 commitment to sustainable practices and customer satisfaction
@@ -191,7 +205,11 @@ const Home = () => {
               </Typography>
               <Typography
                 variant="body2"
-                sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>
+                sx={{
+                  fontSize: { xs: "0.75rem", sm: "0.875rem" },
+                  color: "white",
+                }} // Set to white for better visibility
+              >
                 Explore our diverse offerings, including organic fruits,
                 vegetables, and more. Let us be your trusted partner in the
                 global agricultural trade!
