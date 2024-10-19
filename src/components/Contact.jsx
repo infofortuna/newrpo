@@ -10,8 +10,17 @@ import {
   Grid,
   IconButton,
   Snackbar,
+  CircularProgress,
 } from "@mui/material";
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaLinkedin,
+  FaInstagram,
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -46,17 +55,19 @@ function ContactUs() {
         alignItems: "center",
         justifyContent: "center",
         boxShadow: 1,
-      }}>
+      }}
+    >
       <Grid
         container
         spacing={3}
         sx={{
-          borderRadius: "lg",
+          borderRadius: 2,
           boxShadow: 3,
           backgroundColor: "#f9f9f9",
           width: { xs: "100%", md: "80%", lg: "70%" },
           overflow: "hidden",
-        }}>
+        }}
+      >
         {/* Right Side: Contact Form Section */}
         <Grid item xs={12} md={6}>
           <Box sx={{ p: 4 }}>
@@ -64,8 +75,10 @@ function ContactUs() {
               variant="h5"
               sx={{
                 fontWeight: "bold",
-                fontSize: { xs: "1.35rem", md: "1.575rem" }, // Adjusted font size
-              }}>
+                fontSize: { xs: "1.5rem", md: "1.75rem" },
+                color: "#00796b",
+              }}
+            >
               Contact Us
             </Typography>
             <Typography sx={{ mb: 3 }} color="textSecondary">
@@ -81,13 +94,13 @@ function ContactUs() {
               }}
               validationSchema={validationSchema}
               onSubmit={(values, { resetForm, setSubmitting }) => {
-                // Simulate form submission
                 setTimeout(() => {
-                  setOpen(true); // Open the Snackbar
+                  setOpen(true);
                   resetForm();
                   setSubmitting(false);
                 }, 500);
-              }}>
+              }}
+            >
               {({
                 handleChange,
                 handleBlur,
@@ -161,8 +174,13 @@ function ContactUs() {
                         "&:hover": {
                           backgroundColor: "#005b5b",
                         },
-                      }}>
-                      Submit
+                      }}
+                    >
+                      {isSubmitting ? (
+                        <CircularProgress size={24} color="inherit" />
+                      ) : (
+                        "Submit"
+                      )}
                     </Button>
                   </Stack>
                 </form>
@@ -182,39 +200,77 @@ function ContactUs() {
               alignItems: "flex-start",
               backgroundColor: "#00796b",
               color: "white",
-              borderRadius: "lg",
+              borderRadius: 2,
               boxShadow: 1,
-            }}>
-            <Avatar
-              alt="Fortuna Enterprise"
-              src="company-logo-png.png"
-              sx={{ mb: 2, width: 60, height: 60 }}
-            />
+            }}
+          >
+            <Box
+              sx={{
+                border: "4px solid white",
+                borderRadius: "50%",
+                padding: "4px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                mb: 2,
+                transition: "transform 0.3s ease", // Smooth transition
+                "&:hover": {
+                  transform: "rotateY(20deg) rotateX(10deg)", // Rotate on hover
+                },
+              }}
+            >
+              <Avatar
+                alt="Fortuna Enterprise"
+                src="company-logo-png.png"
+                sx={{
+                  width: 60,
+                  height: 60,
+                  transition: "transform 0.3s ease", // Smooth transition
+                  "&:hover": {
+                    transform: "rotateY(20deg) rotateX(10deg)", // Rotate on hover
+                  },
+                }}
+              />
+            </Box>
             <Typography
               variant="h5"
               sx={{
                 fontWeight: "bold",
-                fontSize: { xs: "1.35rem", md: "1.575rem" }, // Adjusted font size
-              }}>
+                fontSize: { xs: "1.5rem", md: "1.75rem" },
+                color: "white",
+              }}
+            >
               Get in Touch
             </Typography>
-            <Typography
-              sx={{ mb: 2, fontSize: { xs: "0.81rem", md: "0.9rem" } }}>
+            <Typography sx={{ mb: 2, fontSize: { xs: "0.85rem", md: "1rem" } }}>
               We’re here to assist you with all your import-export needs. Reach
               out to us through any of the following methods:
             </Typography>
             <Divider sx={{ mb: 2, backgroundColor: "whiteAlpha.400" }} />
             <Typography fontWeight="bold">Contact Information:</Typography>
-            <Typography>
-              • Address: Fortuna Enterprise B-320 ,SaraBhai Compound , Vadodara
-            </Typography>
-            <Typography>• Phone: +91-7506615066</Typography>
-            <Typography>
-              • Email:{" "}
-              <span style={{ color: "#ffeb3b", textDecoration: "underline" }}>
-                info@fortunaenterprise.in
-              </span>
-            </Typography>
+            <Box
+              sx={{ border: "1px solid white", borderRadius: 1, p: 2, mt: 2 }}
+            >
+              <Stack spacing={1}>
+                <Typography display="flex" alignItems="center">
+                  <FaPhoneAlt style={{ marginRight: 8 }} />
+                  +91-7506615066
+                </Typography>
+                <Typography display="flex" alignItems="center">
+                  <FaEnvelope style={{ marginRight: 8 }} />
+                  <span
+                    style={{ color: "#ffeb3b", textDecoration: "underline" }}
+                  >
+                    info@fortunaenterprise.in
+                  </span>
+                </Typography>
+                <Typography display="flex" alignItems="center">
+                  <FaMapMarkerAlt style={{ marginRight: 8 }} />
+                  Fortuna Enterprise B-320, Atlantis K10, 3A, Sayaji Path,
+                  Alkapuri, Vadodara, Gujarat 390005
+                </Typography>
+              </Stack>
+            </Box>
             <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
               <IconButton color="inherit" href="#" aria-label="Facebook">
                 <FaFacebook />
@@ -226,13 +282,15 @@ function ContactUs() {
                 color="inherit"
                 href="https://www.linkedin.com/in/mahesh-gulechaa-941867210"
                 target="_blank"
-                aria-label="LinkedIn">
+                aria-label="LinkedIn"
+              >
                 <FaLinkedin />
               </IconButton>
               <IconButton
                 color="inherit"
                 href="https://www.instagram.com/in/mahesh-gulechaa-941867210"
-                aria-label="Instagram">
+                aria-label="Instagram"
+              >
                 <FaInstagram />
               </IconButton>
             </Stack>
@@ -242,9 +300,10 @@ function ContactUs() {
                 mt: 3,
                 width: "100%",
                 height: "200px",
-                borderRadius: "lg",
+                borderRadius: 2,
                 overflow: "hidden",
-              }}>
+              }}
+            >
               <iframe
                 title="Google Map"
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15887.12599008619!2d73.1659085!3d22.3176504!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8b84cad1c5f%3A0x5f36b27a05260b16!2sAtlantis%20K10!5e0!3m2!1sen!2sus!4v1697762919003!5m2!1sen!2sus"
