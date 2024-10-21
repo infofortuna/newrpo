@@ -330,7 +330,7 @@
 // }
 
 // export default ContactUs;
-import  { useState } from "react";
+import { useState } from "react";
 import {
   Box,
   Typography,
@@ -573,10 +573,21 @@ function ContactUs() {
               </Stack>
             </Box>
             <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
-              <IconButton color="inherit" href="#" aria-label="Facebook">
+              <IconButton
+                color="inherit"
+                href="#"
+                aria-label="Facebook"
+                target="_blank"
+              >
                 <FaFacebook />
               </IconButton>
-              <IconButton color="inherit" href="#" aria-label="Twitter">
+
+              <IconButton
+                color="inherit"
+                href="#"
+                aria-label="Twitter"
+                target="_blank"
+              >
                 <FaTwitter />
               </IconButton>
               <IconButton
@@ -589,7 +600,8 @@ function ContactUs() {
               </IconButton>
               <IconButton
                 color="inherit"
-                href="https://www.instagram.com/in/mahesh-gulechaa-941867210"
+                href="https://www.instagram.com/fortunaenterprise_/"
+                target="_blank"
                 aria-label="Instagram"
               >
                 <FaInstagram />

@@ -122,7 +122,7 @@ const Footer = () => {
                 <TwitterIcon />
               </Link>
               <Link
-                href="https://www.instagram.com/in/mahesh-gulechaa-941867210"
+                href="https://www.instagram.com/fortunaenterprise_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 color="inherit"
