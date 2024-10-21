@@ -567,8 +567,8 @@ function ContactUs() {
                 </Typography>
                 <Typography display="flex" alignItems="center">
                   <FaMapMarkerAlt style={{ marginRight: 8 }} />
-                  Fortuna Enterprise B-320, Atlantis K10, 3A, Sayaji Path,
-                  Alkapuri, Vadodara, Gujarat 390005
+                  Fortuna Enterprise B-320, Atlantis K10, near Genda circle
+                  ,Vadodara - 390007
                 </Typography>
               </Stack>
             </Box>

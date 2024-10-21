@@ -90,8 +90,8 @@ const Footer = () => {
                 <LocationOnIcon sx={{ color: "#ff9800" }} />{" "}
                 {/* Icon for address */}
                 <Typography variant="body2" sx={{ maxWidth: "250px" }}>
-                  Fortuna Enterprise B-320, Atlantis K10, 3A, Sayaji Path,
-                  Alkapuri, Vadodara, Gujarat 390005
+                  Fortuna Enterprise B-320, Atlantis K10, near Genda circle
+                  ,Vadodara - 390007
                 </Typography>
               </Stack>
             </Stack>
