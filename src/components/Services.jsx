@@ -10,6 +10,8 @@ import {
   CardMedia,
   CardContent,
 } from "@mui/material";
+import { MdCheckCircle } from "react-icons/md"; // Importing an icon for services
+import { FaGlobe } from "react-icons/fa"; // Icon for export markets
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,13 +25,11 @@ function Services() {
     };
 
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  // Animation on Load for big screens
   useEffect(() => {
     const cards = servicesRef.current.querySelectorAll(".service-card");
 
@@ -46,7 +46,6 @@ function Services() {
       );
     }
 
-    // Animation on Scroll for small screens
     if (isSmallScreen) {
       cards.forEach((card) => {
         gsap.fromTo(
@@ -74,292 +73,184 @@ function Services() {
         <Typography
           variant="h4"
           align="center"
-          color="indigo.600"
+          color="primary.main"
           gutterBottom
-          sx={{ fontSize: { xs: "1.5rem", sm: "2rem", md: "2.2rem" } }} // Responsive font size
+          sx={{
+            fontSize: { xs: "1.5rem", sm: "2rem", md: "2.2rem" },
+            fontWeight: "bold",
+          }}
         >
           Our Services
         </Typography>
         <Typography
           variant="h5"
           align="center"
-          color="gray.950"
+          color="text.secondary"
           gutterBottom
-          sx={{ mt: 2, fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.7rem" } }} // Responsive font size
+          sx={{ mt: 2, fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.7rem" } }}
         >
           &quot;Your Trusted Partner in Global Trade Solutions.&quot;
         </Typography>
+
         <Grid container spacing={4} justifyContent="center" sx={{ mt: 4 }}>
-          {/* Sourcing Services Card */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              className="service-card"
-              sx={{
-                height: "100%", // Ensure consistent height
-                transition: "transform 0.3s, box-shadow 0.3s",
-                "&:hover": {
-                  transform: "scale(1.05)", // Zoom in
-                  boxShadow: 3,
-                },
-              }}>
-              <CardMedia
-                component="img"
-                height="200"
-                image="/global-sourcing.jpg"
-                alt="Sourcing Services"
+          {[
+            {
+              title: "Sourcing and Supplying Services",
+              image: "sourcing.jpeg",
+              content: [
+                { text: "Local Expertise", highlight: true },
+                "Deep connections with farmers, manufacturers, and suppliers across various sectors.",
+                { text: "Quality Control", highlight: true },
+                "Stringent quality assessments to ensure only the best products are selected.",
+                { text: "Customization", highlight: true },
+                "Ability to source and supply specific varieties and grades tailored to your needs.",
+              ],
+            },
+            {
+              title: "Logistics Management",
+              image: "logistic.jpeg",
+              content: [
+                { text: "Comprehensive Logistics", highlight: true },
+                "Efficient handling of shipping, documentation, and customs clearance.",
+                { text: "Timely Delivery", highlight: true },
+                "Ensuring your products arrive on time.",
+                { text: "Secure Packaging", highlight: true },
+                "Advanced solutions to maintain product quality during transit.",
+              ],
+            },
+            {
+              title: "Import Procedures Management",
+              image: "impexp.jpeg",
+              content: [
+                { text: "Comprehensive Support", highlight: true },
+                "Assistance in managing import documentation, regulations, and compliance procedures.",
+                { text: "Customs Clearance", highlight: true },
+                "Expertise to ensure smooth customs processes.",
+                { text: "Risk Management", highlight: true },
+                "Proactive strategies to minimize import-related risks.",
+              ],
+            },
+          ].map((service, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card
+                className="service-card"
                 sx={{
-                  objectFit: "contain",
-                  transition: "transform 0.3s",
-                  "&:hover": { transform: "scale(1.1)" }, // Optional: Zoom on image hover
-                }}
-              />
-              <CardContent>
-                <Typography
-                  variant="h6"
-                  color="gray.800"
-                  sx={{ fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" } }}>
-                  Sourcing Services
-                </Typography>
-                <Typography
-                  color="gray.600"
-                  paragraph
-                  sx={{
-                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                  }}>
-                  <strong>Local Expertise:</strong> Deep connections with
-                  manufacturers and suppliers across various sectors.
-                </Typography>
-                <Typography
-                  color="gray.600"
-                  paragraph
-                  sx={{
-                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                  }}>
-                  <strong>Quality Control:</strong> Stringent quality
-                  assessments to ensure only the best products are selected.
-                </Typography>
-                <Typography
-                  color="gray.600"
-                  paragraph
-                  sx={{
-                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                  }}>
-                  <strong>Customization:</strong> Ability to source specific
-                  varieties and grades as per client requirements.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          {/* Export Services Card */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              className="service-card"
-              sx={{
-                height: "100%", // Ensure consistent height
-                transition: "transform 0.3s, box-shadow 0.3s",
-                "&:hover": {
-                  transform: "scale(1.05)", // Zoom in
+                  height: "100%",
                   boxShadow: 3,
-                },
-              }}>
-              <CardMedia
-                component="img"
-                height="200"
-                image="/Export Services.jpg"
-                alt="Export Services"
-                sx={{
-                  objectFit: "contain",
-                  transition: "transform 0.3s",
-                  "&:hover": { transform: "scale(1.1)" }, // Optional: Zoom on image hover
+                  transition: "transform 0.3s, box-shadow 0.3s",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                    boxShadow: 6,
+                  },
                 }}
-              />
-              <CardContent>
-                <Typography
-                  variant="h6"
-                  color="gray.800"
-                  sx={{ fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" } }}>
-                  Export Services
-                </Typography>
-                <Typography
-                  color="gray.600"
-                  paragraph
+              >
+                <CardMedia
+                  component="img"
+                  height="200"
+                  image={service.image}
+                  alt={service.title}
                   sx={{
-                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                  }}>
-                  <strong>Logistics Management:</strong> Efficient handling of
-                  shipping, documentation, and customs clearance.
-                </Typography>
-                <Typography
-                  color="gray.600"
-                  paragraph
-                  sx={{
-                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                  }}>
-                  <strong>Timely Delivery:</strong> Reliable timelines to ensure
-                  your orders arrive when needed.
-                </Typography>
-                <Typography
-                  color="gray.600"
-                  paragraph
-                  sx={{
-                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                  }}>
-                  <strong>Secure Packaging:</strong> Advanced packaging
-                  solutions to maintain product quality during transit.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          {/* Consulting Services Card */}
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              className="service-card"
-              sx={{
-                height: "100%", // Ensure consistent height
-                transition: "transform 0.3s, box-shadow 0.3s",
-                "&:hover": {
-                  transform: "scale(1.05)", // Zoom in
-                  boxShadow: 3,
-                },
-              }}>
-              <CardMedia
-                component="img"
-                height="200"
-                image="/Consulting Services.jpg"
-                alt="Consulting Services"
-                sx={{
-                  objectFit: "contain",
-                  transition: "transform 0.3s",
-                  "&:hover": { transform: "scale(1.1)" }, // Optional: Zoom on image hover
-                }}
-              />
-              <CardContent>
-                <Typography
-                  variant="h6"
-                  color="gray.800"
-                  sx={{ fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" } }}>
-                  Consulting Services
-                </Typography>
-                <Typography
-                  color="gray.600"
-                  paragraph
-                  sx={{
-                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                  }}>
-                  <strong>Market Insights:</strong> Providing clients with
-                  valuable information on global trade trends and demands.
-                </Typography>
-                <Typography
-                  color="gray.600"
-                  paragraph
-                  sx={{
-                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                  }}>
-                  <strong>Regulatory Assistance:</strong> Guidance on compliance
-                  with international trade regulations and standards.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+                    objectFit: "cover",
+                    transition: "transform 0.3s",
+                    "&:hover": { transform: "scale(1.1)" },
+                  }}
+                />
+                <CardContent>
+                  <Typography
+                    variant="h6"
+                    color="primary.main"
+                    sx={{
+                      fontWeight: "bold",
+                      fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" },
+                    }}
+                  >
+                    <MdCheckCircle
+                      style={{ marginRight: "0.5rem", color: "green" }}
+                    />
+                    {service.title}
+                  </Typography>
+                  {service.content.map((item, index) => (
+                    <Typography
+                      key={index}
+                      color="text.secondary"
+                      paragraph
+                      sx={{
+                        fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                      }}
+                    >
+                      {item.highlight ? (
+                        <strong style={{ color: "primary.main" }}>
+                          {item.text}
+                        </strong>
+                      ) : (
+                        item
+                      )}
+                    </Typography>
+                  ))}
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
 
-        {/* Why Our Services Stand Out Section */}
-        <Box mt={8} textAlign="center">
-          <Typography
-            variant="h5"
-            color="gray.800"
-            gutterBottom
-            sx={{ fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.7rem" } }}>
-            Why Our Services Stand Out
-          </Typography>
-          <Grid container spacing={4} justifyContent="center">
-            <Grid item xs={12} sm={6} md={4}>
-              <Card
-                sx={{
-                  p: 3,
-                  height: "100%", // Ensure consistent height
-                  transition: "box-shadow 0.3s",
-                  "&:hover": { boxShadow: 3 },
-                }}>
-                <Typography
-                  variant="h6"
-                  color="indigo.600"
-                  gutterBottom
-                  sx={{ fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" } }}>
-                  Efficiency
-                </Typography>
-                <Typography
-                  color="gray.600"
-                  sx={{
-                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                  }}>
-                  Streamlined processes that minimize delays and maximize
-                  productivity.
-                </Typography>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Card
-                sx={{
-                  p: 3,
-                  height: "100%", // Ensure consistent height
-                  transition: "box-shadow 0.3s",
-                  "&:hover": { boxShadow: 3 },
-                }}>
-                <Typography
-                  variant="h6"
-                  color="indigo.600"
-                  gutterBottom
-                  sx={{ fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" } }}>
-                  Reliability
-                </Typography>
-                <Typography
-                  color="gray.600"
-                  sx={{
-                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                  }}>
-                  Consistent delivery of high-quality products you can trust.
-                </Typography>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Card
-                sx={{
-                  p: 3,
-                  height: "100%", // Ensure consistent height
-                  transition: "box-shadow 0.3s",
-                  "&:hover": { boxShadow: 3 },
-                }}>
-                <Typography
-                  variant="h6"
-                  color="indigo.600"
-                  gutterBottom
-                  sx={{ fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" } }}>
-                  Customer Support
-                </Typography>
-                <Typography
-                  color="gray.600"
-                  sx={{
-                    fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                  }}>
-                  Dedicated support team to assist you at every step.
-                </Typography>
-              </Card>
-            </Grid>
-          </Grid>
-        </Box>
-
-        <Box mt={8} textAlign="center">
-          <Typography
-            variant="body1"
-            color="gray.600"
-            sx={{ fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" } }}>
-            At Fortuna Enterprise, we pride ourselves on our commitment to
-            excellence and customer satisfaction. Contact us today to learn more
-            about how we can assist you in your business endeavors.
-          </Typography>
+        {/* New Export Markets Section */}
+        <Box sx={{ mt: 6, textAlign: "center" }}>
+          <Card
+            sx={{
+              backgroundColor: "primary.light",
+              padding: 4,
+              borderRadius: 2,
+              boxShadow: 3,
+            }}
+          >
+            <Typography
+              variant="h5"
+              color="primary.contrastText"
+              gutterBottom
+              sx={{
+                fontSize: { xs: "1.5rem", sm: "1.7rem", md: "2rem" },
+                fontWeight: "bold",
+              }}
+            >
+              <FaGlobe style={{ marginRight: "0.5rem" }} />
+              Export Markets
+            </Typography>
+            <Typography
+              color="primary.contrastText"
+              sx={{ fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" } }}
+              paragraph
+            >
+              We specialize in sourcing and exporting a diverse range of
+              high-quality products to various global markets.
+            </Typography>
+            <Typography
+              color="primary.contrastText"
+              sx={{ fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" } }}
+              paragraph
+            >
+              Our key export markets include:
+            </Typography>
+            <ul style={{ listStyle: "none", padding: 0 }}>
+              {[
+                "United States",
+                "European Union",
+                "Middle East",
+                "Southeast Asia",
+                "Africa",
+              ].map((market, index) => (
+                <li key={index}>
+                  <Typography
+                    color="primary.contrastText"
+                    sx={{
+                      fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
+                    }}
+                  >
+                    • {market}
+                  </Typography>
+                </li>
+              ))}
+            </ul>
+          </Card>
         </Box>
       </Container>
     </Box>

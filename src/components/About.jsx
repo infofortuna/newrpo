@@ -239,6 +239,10 @@ function About() {
 // Sample FAQ data
 const faqData = [
   {
+    question: "What Certification do you have?",
+    answer: "APEDA, Spices Board of India, and FSSAI.",
+  },
+  {
     question: "What types of products do you export?",
     answer:
       "We source products from a wide range of agriculture, including grains, pulses, cereals, processed foods, spices, mixed and blended curry powders, oils, and oleoresins.",
