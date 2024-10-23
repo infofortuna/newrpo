@@ -145,7 +145,7 @@ export default function EnhancedNavbar() {
     };
   }, [location]);
 
-  const isAdmin = true; // Replace with actual admin check logic
+  const isAdmin = false; // Replace with actual admin check logic
 
   const menuItems = [
     { path: "/", label: "Home" },

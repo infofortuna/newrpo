@@ -8,7 +8,7 @@ import Products from "./components/Products";
 import Dashboard from "./components/Dashboard";
 import Blog from "./blog/Blog";
 import BlogPage from "./blog/BlogPage";
-import Footer from "./components/Footer"; 
+import Footer from "./components/Footer";
 import Pricing from "./components/Pricing";
 import NotFound from "./components/NotFound"; // Uncomment the import
 

@@ -1,6 +1,10 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import About from "./About";
+import Products from "./Products";
+import Services from "./Services";
+import Blog from "../blog/Blog";
+import Contact from "./Contact";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -235,6 +239,11 @@ const Home = () => {
           <WhyUs />
           <ImportExport ref={importExportRef} />
         </Container>
+        <About />
+        <Products />
+        <Services />
+        <Blog />
+        <Contact />
       </main>
     </>
   );
