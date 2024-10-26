@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import  { useEffect, useRef } from "react";
 import {
   Card,
   CardContent,
@@ -6,7 +6,6 @@ import {
   Typography,
   Grid,
   Container,
-  Box,
 } from "@mui/material";
 import gsap from "gsap";
 
@@ -38,18 +37,22 @@ function Products() {
         borderRadius: "8px",
         boxShadow: 3,
         mt: 2,
-      }}>
+        mb: 2,
+      }}
+    >
       <Typography
         variant="h4"
         align="center"
-        sx={{ fontWeight: "bold", mb: 2, color: "#333" }}>
+        sx={{ fontWeight: "bold", mb: 2, color: "#333" }}
+      >
         Discover Our Diverse Product Offerings
       </Typography>
       <Typography
         variant="body1"
         align="center"
         color="text.secondary"
-        sx={{ mb: 4 }}>
+        sx={{ mb: 4 }}
+      >
         At Fortuna Enterprise, we specialize in sourcing and exporting a wide
         range of products, ensuring that our clients have access to high-quality
         goods that meet their needs.
@@ -64,7 +67,8 @@ function Products() {
               transition: "transform 0.3s, box-shadow 0.3s",
               border: "1px solid #e0e0e0",
               "&:hover": { transform: "scale(1.05)", boxShadow: 5 },
-            }}>
+            }}
+          >
             <CardMedia
               component="img"
               height="140"
@@ -79,7 +83,8 @@ function Products() {
               <Typography
                 variant="h6"
                 component="div"
-                sx={{ fontWeight: "bold", color: "#1976d2" }}>
+                sx={{ fontWeight: "bold", color: "#1976d2" }}
+              >
                 Agricultural Products
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
@@ -109,7 +114,8 @@ function Products() {
               transition: "transform 0.3s, box-shadow 0.3s",
               border: "1px solid #e0e0e0",
               "&:hover": { transform: "scale(1.05)", boxShadow: 5 },
-            }}>
+            }}
+          >
             <CardMedia
               component="img"
               height="140"
@@ -124,7 +130,8 @@ function Products() {
               <Typography
                 variant="h6"
                 component="div"
-                sx={{ fontWeight: "bold", color: "#1976d2" }}>
+                sx={{ fontWeight: "bold", color: "#1976d2" }}
+              >
                 Premium Spices
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
@@ -155,7 +162,8 @@ function Products() {
               transition: "transform 0.3s, box-shadow 0.3s",
               border: "1px solid #e0e0e0",
               "&:hover": { transform: "scale(1.05)", boxShadow: 5 },
-            }}>
+            }}
+          >
             <CardMedia
               component="img"
               height="140"
@@ -170,7 +178,8 @@ function Products() {
               <Typography
                 variant="h6"
                 component="div"
-                sx={{ fontWeight: "bold", color: "#1976d2" }}>
+                sx={{ fontWeight: "bold", color: "#1976d2" }}
+              >
                 Organic Foods
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>

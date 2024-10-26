@@ -298,11 +298,13 @@ Sustainability is not just a trend; it is a necessity for the future of agricult
         open={toastOpen}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         autoHideDuration={3000}
-        onClose={() => setToastOpen(false)}>
+        onClose={() => setToastOpen(false)}
+      >
         <Alert
           onClose={() => setToastOpen(false)}
           severity={toastSeverity}
-          sx={{ width: "100%" }}>
+          sx={{ width: "100%" }}
+        >
           {toastMessage}
         </Alert>
       </Snackbar>
@@ -379,7 +381,8 @@ Sustainability is not just a trend; it is a necessity for the future of agricult
           <Button
             onClick={handlePostSubmit}
             disabled={!isFormValid()}
-            color="primary">
+            color="primary"
+          >
             Add Post
           </Button>
         </DialogActions>
@@ -463,7 +466,8 @@ Sustainability is not just a trend; it is a necessity for the future of agricult
           <Button
             onClick={handlePostUpdate}
             disabled={!isFormValid()}
-            color="primary">
+            color="primary"
+          >
             Update Post
           </Button>
         </DialogActions>
@@ -489,7 +493,8 @@ Sustainability is not just a trend; it is a necessity for the future of agricult
           <Grid item xs={12} sm={6} md={4} key={post.id}>
             <Card
               onClick={() => handlePostClick(post)}
-              style={{ cursor: "pointer" }}>
+              style={{ cursor: "pointer" }}
+            >
               <CardMedia
                 component="img"
                 height="140"
@@ -530,7 +535,8 @@ Sustainability is not just a trend; it is a necessity for the future of agricult
           <Button onClick={() => handleEditPost(selectedPost)}>Edit</Button>
           <Button
             onClick={() => handleDeleteConfirmation(selectedPost.id)}
-            color="secondary">
+            color="secondary"
+          >
             Delete
           </Button>
           <Button onClick={() => setOpenPostModal(false)}>Close</Button>
@@ -541,3 +547,226 @@ Sustainability is not just a trend; it is a necessity for the future of agricult
 };
 
 export default Dashboard;
+
+// import React, { useState, useEffect } from 'react';
+// import {
+//   Typography,
+//   TextField,
+//   Card,
+//   CardContent,
+//   CardMedia,
+//   Grid,
+//   Box,
+//   Button,
+//   Snackbar,
+//   Alert,
+//   Dialog,
+//   DialogTitle,
+//   DialogContent,
+//   DialogActions,
+// } from '@mui/material';
+// import { supabase } from './supabaseClient'; // Import Supabase client
+
+// const Dashboard = () => {
+//   const [searchTerm, setSearchTerm] = useState('');
+//   const [toastOpen, setToastOpen] = useState(false);
+//   const [toastMessage, setToastMessage] = useState('');
+//   const [toastSeverity, setToastSeverity] = useState('info');
+//   const [posts, setPosts] = useState([]);
+//   const [openAddDialog, setOpenAddDialog] = useState(false);
+//   const [openEditDialog, setOpenEditDialog] = useState(false);
+//   const [openPostModal, setOpenPostModal] = useState(false);
+//   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+//   const [newPost, setNewPost] = useState({
+//     title: '',
+//     image: '',
+//     excerpt: '',
+//     date: '',
+//     author: '',
+//     readTime: '',
+//     category: '',
+//     fullContent: '',
+//   });
+//   const [editPostId, setEditPostId] = useState(null);
+//   const [deletePostId, setDeletePostId] = useState(null);
+//   const [selectedPost, setSelectedPost] = useState(null);
+//   const [imagePreview, setImagePreview] = useState('');
+
+//   // Fetch posts from Supabase
+//   const fetchPosts = async () => {
+//     let { data: posts, error } = await supabase.from('posts').select('*');
+//     if (error) console.log('Error fetching posts:', error);
+//     else setPosts(posts);
+//   };
+
+//   // Run fetchPosts on component load
+//   useEffect(() => {
+//     fetchPosts();
+//   }, []);
+
+//   // Filter posts based on the search term
+//   const filteredPosts = posts.filter((post) =>
+//     post.title.toLowerCase().includes(searchTerm.toLowerCase())
+//   );
+
+//   // Handle search input change
+//   const handleSearchChange = (e) => {
+//     setSearchTerm(e.target.value);
+//     if (e.target.value && filteredPosts.length === 0) {
+//       showToast('No matching blog posts found!', 'warning');
+//     }
+//   };
+
+//   // Show toast notification
+//   const showToast = (message, severity) => {
+//     setToastMessage(message);
+//     setToastSeverity(severity);
+//     setToastOpen(true);
+//   };
+
+//   // Add new post
+//   const handlePostSubmit = async () => {
+//     const { data, error } = await supabase.from('posts').insert([newPost]);
+//     if (error) {
+//       showToast('Error adding post!', 'error');
+//     } else {
+//       showToast('Post added successfully!', 'success');
+//       fetchPosts(); // Refresh the posts list
+//       handleDialogClose();
+//     }
+//   };
+
+//   // Update an existing post
+//   const handlePostUpdate = async () => {
+//     const { error } = await supabase
+//       .from('posts')
+//       .update({ ...newPost, image: imagePreview })
+//       .eq('id', editPostId);
+
+//     if (error) {
+//       showToast('Error updating post!', 'error');
+//     } else {
+//       showToast('Post updated successfully!', 'success');
+//       fetchPosts();
+//       handleDialogClose();
+//     }
+//   };
+
+//   // Delete a post
+//   const confirmDeletePost = async () => {
+//     const { error } = await supabase.from('posts').delete().eq('id', deletePostId);
+//     if (error) {
+//       showToast('Error deleting post!', 'error');
+//     } else {
+//       showToast('Post deleted successfully!', 'success');
+//       fetchPosts();
+//       handleDialogClose();
+//     }
+//   };
+
+//   // Close all dialogs and reset form
+//   const handleDialogClose = () => {
+//     setOpenAddDialog(false);
+//     setOpenEditDialog(false);
+//     setOpenPostModal(false);
+//     setOpenDeleteDialog(false);
+//     resetForm();
+//   };
+
+//   const resetForm = () => {
+//     setNewPost({
+//       title: '',
+//       image: '',
+//       excerpt: '',
+//       date: '',
+//       author: '',
+//       readTime: '',
+//       category: '',
+//       fullContent: '',
+//     });
+//     setEditPostId(null);
+//     setDeletePostId(null);
+//     setSelectedPost(null);
+//     setImagePreview('');
+//   };
+
+//   // Handle post click to open the modal
+//   const handlePostClick = (post) => {
+//     setSelectedPost(post);
+//     setOpenPostModal(true);
+//   };
+
+//   return (
+//     <Box className="container mx-auto p-4">
+//       <Typography variant="h4" align="center" gutterBottom>
+//         Blog Dashboard
+//       </Typography>
+
+//       {/* Search Bar */}
+//       <Box className="mb-6" display="flex" justifyContent="center">
+//         <TextField
+//           label="Search Blog Posts"
+//           variant="outlined"
+//           fullWidth
+//           onChange={handleSearchChange}
+//           aria-label="Search blog posts"
+//           sx={{ maxWidth: 600 }}
+//         />
+//       </Box>
+
+//       {/* Action Buttons */}
+//       <Box display="flex" justifyContent="center" mb={4}>
+//         <Button variant="contained" color="primary" onClick={() => setOpenAddDialog(true)}>
+//           Add New Post
+//         </Button>
+//       </Box>
+
+//       {/* Toast Notification */}
+//       <Snackbar
+//         open={toastOpen}
+//         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+//         autoHideDuration={3000}
+//         onClose={() => setToastOpen(false)}
+//       >
+//         <Alert onClose={() => setToastOpen(false)} severity={toastSeverity} sx={{ width: '100%' }}>
+//           {toastMessage}
+//         </Alert>
+//       </Snackbar>
+
+//       {/* Blog Posts Display */}
+//       <Grid container spacing={2}>
+//         {filteredPosts.map((post) => (
+//           <Grid item xs={12} sm={6} md={4} key={post.id}>
+//             <Card onClick={() => handlePostClick(post)} style={{ cursor: 'pointer' }}>
+//               <CardMedia component="img" height="140" image={post.image} alt={post.title} />
+//               <CardContent>
+//                 <Typography gutterBottom variant="h5">
+//                   {post.title}
+//                 </Typography>
+//                 <Typography variant="body2" color="text.secondary">
+//                   {post.excerpt}
+//                 </Typography>
+//                 <Typography variant="caption" display="block">
+//                   {post.author} | {new Date(post.date).toLocaleDateString()}
+//                 </Typography>
+//               </CardContent>
+//             </Card>
+//           </Grid>
+//         ))}
+//       </Grid>
+
+//       {/* Selected Post Modal */}
+//       <Dialog open={openPostModal} onClose={() => setOpenPostModal(false)}>
+//         <DialogTitle>{selectedPost?.title}</DialogTitle>
+//         <DialogContent>
+//           <CardMedia component="img" height="140" image={selectedPost?.image} alt={selectedPost?.title} />
+//           <Typography variant="body1" sx={{ marginTop: 2 }}>
+//             {selectedPost?.fullContent}
+//           </Typography>
+//         </DialogContent>
+//       </Dialog>
+//     </Box>
+//   );
+// };
+
+// export default Dashboard;

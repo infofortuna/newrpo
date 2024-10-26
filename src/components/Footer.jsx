@@ -1,4 +1,7 @@
 import { Box, Container, Grid, Typography, Link, Stack } from "@mui/material";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PhoneIcon from "@mui/icons-material/Phone";
+import MailIcon from "@mui/icons-material/Mail";
 import {
   Facebook as FacebookIcon,
   Twitter as TwitterIcon,
@@ -10,11 +13,12 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        bgcolor: "#333", // Dark background color (you can change to '#666' for a gray background)
+        bgcolor: "#333", // Dark background color
         color: "#fff",
         py: 4,
         mt: 4, // Margin-top to create space from the component above
-      }}>
+      }}
+    >
       <Container maxWidth="lg">
         <Grid container spacing={4}>
           {/* Logo Section */}
@@ -68,14 +72,29 @@ const Footer = () => {
             <Typography variant="h6" gutterBottom>
               Contact Us
             </Typography>
-            <Typography variant="body2">
-              Email: info@fortunaenterprise.in
-            </Typography>
-            <Typography variant="body2">Phone: +91-7506615066</Typography>
-            <Typography variant="body2">
-              Address: Fortuna Enterprise B-320 ,SaraBhai Compound , Vadodara
-              ,Gujarat , India
-            </Typography>
+            <Stack spacing={1}>
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <MailIcon sx={{ color: "#ff9800" }} /> {/* Icon for email */}
+                <Typography variant="body2">
+                  Email:{" "}
+                  <Link href="mailto:info@fortunaenterprise.in" color="inherit">
+                    info@fortunaenterprise.in
+                  </Link>
+                </Typography>
+              </Stack>
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <PhoneIcon sx={{ color: "#ff9800" }} /> {/* Icon for phone */}
+                <Typography variant="body2">Phone: +91-7506615066</Typography>
+              </Stack>
+              <Stack direction="row" alignItems="center" spacing={1}>
+                <LocationOnIcon sx={{ color: "#ff9800" }} />{" "}
+                {/* Icon for address */}
+                <Typography variant="body2" sx={{ maxWidth: "250px" }}>
+                  Fortuna Enterprise B-320, Atlantis K10, near Genda circle
+                  ,Vadodara - 390007
+                </Typography>
+              </Stack>
+            </Stack>
           </Grid>
 
           {/* Social Media Links */}
@@ -89,7 +108,8 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 color="inherit"
-                aria-label="Facebook">
+                aria-label="Facebook"
+              >
                 <FacebookIcon />
               </Link>
               <Link
@@ -97,15 +117,17 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 color="inherit"
-                aria-label="Twitter">
+                aria-label="Twitter"
+              >
                 <TwitterIcon />
               </Link>
               <Link
-                href="https://www.instagram.com/in/mahesh-gulechaa-941867210"
+                href="https://www.instagram.com/fortunaenterprise_/"
                 target="_blank"
                 rel="noopener noreferrer"
                 color="inherit"
-                aria-label="Instagram">
+                aria-label="Instagram"
+              >
                 <InstagramIcon />
               </Link>
               <Link
@@ -113,7 +135,8 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 color="inherit"
-                aria-label="LinkedIn">
+                aria-label="LinkedIn"
+              >
                 <LinkedInIcon />
               </Link>
             </Stack>

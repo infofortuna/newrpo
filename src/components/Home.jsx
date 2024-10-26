@@ -1,11 +1,19 @@
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import About from "./About";
+import Products from "./Products";
+import Services from "./Services";
+import Blog from "../blog/Blog";
+import BussinesInfo from "./BussinesInfo";
+import Contact from "./Contact";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Box, Button, Typography, Container } from "@mui/material";
 import { KeyboardArrowRight } from "@mui/icons-material";
+import Slider from "react-slick"; // Import Slider for the carousel
 import WhyUs from "./WhyUs";
 import ImportExport from "./ImportExport";
-
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
@@ -15,6 +23,17 @@ const Home = () => {
   const ctaRef = useRef(null);
   const paragraphRef = useRef(null);
   const importExportRef = useRef(null);
+
+  // Carousel settings
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    fade: true, // Add fade effect for smooth transition
+    cssEase: "linear",
+  };
 
   useEffect(() => {
     const animations = [
@@ -92,34 +111,53 @@ const Home = () => {
 
   return (
     <>
-      <header className="text-center relative overflow-hidden" ref={heroRef}>
+      <header
+        className="text-center relative overflow-hidden"
+        role="banner"
+        ref={heroRef}
+      >
+        <Slider {...settings}>
+          {/* Carousel slides */}
+          <div>
+            <img
+              src="bg.jpg" // Replace with your image URLs
+              alt="Background 1"
+              style={{ width: "100%", height: "100vh", objectFit: "cover" }}
+            />
+          </div>
+          <div>
+            <img
+              src="bg2.jpg" // Replace with your image URLs
+              alt="Background 2"
+              style={{ width: "100%", height: "100vh", objectFit: "cover" }}
+            />
+          </div>
+          <div>
+            <img
+              src="bg3.webp" // Replace with your image URLs
+              alt="Background 3"
+              style={{ width: "100%", height: "100vh", objectFit: "cover" }}
+            />
+          </div>
+        </Slider>
+
         <Box
           sx={{
-            height: { xs: "80vh", md: "100vh" },
-            backgroundImage: "url('import.webp')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            position: "relative",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.5)", // Darker overlay with 50% opacity
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
             padding: { xs: "2rem 1rem", md: "2rem 0" },
-            filter: "brightness(0.9)",
-          }}>
-          <Box
-            sx={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              bgcolor: "transparent",
-              background:
-                "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8))",
-            }}
-          />
+            color: "white",
+          }}
+        >
           <Container
             sx={{
               position: "relative",
@@ -128,8 +166,8 @@ const Home = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              color: "white",
-            }}>
+            }}
+          >
             <Typography
               variant="h1"
               ref={titleRef}
@@ -137,25 +175,39 @@ const Home = () => {
                 fontSize: { xs: "2.5rem", md: "4rem" },
                 mb: 1,
                 lineHeight: { xs: "1.2", md: "1.2" },
-                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-              }}>
+                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)",
+              }}
+            >
               Welcome to Fortuna Enterprise
             </Typography>
             <Typography
-              variant="h5"
+              variant="h2"
               ref={subtitleRef}
               sx={{
                 fontSize: { xs: "1.5rem", md: "2.5rem" },
                 mb: 1,
                 lineHeight: { xs: "1.3", md: "1.3" },
-                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)",
-              }}>
-              Your Trusted Partner in Agricultural and Organic Goods
+                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)",
+              }}
+            >
+              Your Trusted Partner in Agriculture.
             </Typography>
             <Typography
               variant="body1"
-              sx={{ fontSize: { xs: "0.875rem", sm: "1rem" }, mb: 2 }}>
-              Specializing in Quality Organic Produce and Agricultural Products
+              sx={{ fontSize: { xs: "0.875rem", sm: "1rem" }, mb: 2 }}
+            >
+              &ldquo;
+              <span
+                style={{
+                  fontWeight: "bold",
+                  color: "blue",
+                  textDecoration: "underline",
+                }}
+              >
+                We work on a commission basis and act as sourcing and buying
+                agents, and brokers.
+              </span>
+              &rdquo;
             </Typography>
             <Button
               variant="contained"
@@ -173,30 +225,11 @@ const Home = () => {
                 alignItems: "center",
               }}
               href="/services"
-              aria-label="Discover Our Organic Solutions" // Added aria-label for accessibility
+              aria-label="Discover Our Organic Solutions"
             >
               <KeyboardArrowRight sx={{ mr: 1 }} />
               Discover Our Organic Solutions
             </Button>
-            <Box
-              ref={paragraphRef}
-              sx={{ maxWidth: "600px", textAlign: "center" }}>
-              <Typography
-                variant="body2"
-                sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" }, mb: 1 }}>
-                At Fortuna Enterprise, we are dedicated to connecting businesses
-                worldwide with premium agricultural and organic products. Our
-                commitment to sustainable practices and customer satisfaction
-                drives us in every partnership we forge.
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ fontSize: { xs: "0.75rem", sm: "0.875rem" } }}>
-                Explore our diverse offerings, including organic fruits,
-                vegetables, and more. Let us be your trusted partner in the
-                global agricultural trade!
-              </Typography>
-            </Box>
           </Container>
         </Box>
       </header>
@@ -206,6 +239,29 @@ const Home = () => {
           <WhyUs />
           <ImportExport ref={importExportRef} />
         </Container>
+
+        <BussinesInfo />
+
+        <Box sx={{ borderBottom: "1px solid #ddd" }}>
+          {" "}
+          <About />
+        </Box>
+        <Box sx={{ borderBottom: "1px solid #ddd" }}>
+          {" "}
+          <Products />
+        </Box>
+        <Box sx={{ borderBottom: "1px solid #ddd" }}>
+          {" "}
+          <Services />
+        </Box>
+        <Box sx={{ borderBottom: "1px solid #ddd" }}>
+          {" "}
+          <Blog />
+        </Box>
+        <Box sx={{ borderBottom: "1px solid #ddd" }}>
+          {" "}
+          <Contact />
+        </Box>
       </main>
     </>
   );

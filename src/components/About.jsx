@@ -70,7 +70,8 @@ function About() {
           color="primary.main"
           sx={{
             fontSize: { xs: "1.8rem", md: "2rem" }, // Adjusted size for responsiveness
-          }}>
+          }}
+        >
           Welcome to Fortuna Enterprise
         </Typography>
         <Typography
@@ -80,10 +81,12 @@ function About() {
           color="text.secondary"
           sx={{
             fontSize: { xs: "0.9rem", md: "1rem" }, // 10% smaller on smaller screens
-          }}>
+          }}
+        >
           We simplify the complexities of global trade, connecting businesses
           with exceptional sourcing and logistics solutions to foster
-          international growth.
+          international growth, a commission basis and act as sourcing and
+          buying agents, and brokers.
         </Typography>
 
         <Grid container spacing={4} sx={{ mt: 4 }}>
@@ -133,7 +136,8 @@ function About() {
                     boxShadow: 6,
                     transform: "scale(1.05)", // Slight scale effect
                   },
-                }}>
+                }}
+              >
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography
                     variant="h5"
@@ -141,7 +145,8 @@ function About() {
                     color="primary.main"
                     sx={{
                       fontSize: { xs: "1.35rem", md: "1.5rem" }, // Adjusted size for responsiveness
-                    }}>
+                    }}
+                  >
                     {card.title}
                   </Typography>
                   <Typography
@@ -149,7 +154,8 @@ function About() {
                     align="center"
                     sx={{
                       fontSize: { xs: "0.9rem", md: "1rem" }, // 10% smaller on smaller screens
-                    }}>
+                    }}
+                  >
                     {card.description}
                   </Typography>
                 </CardContent>
@@ -169,7 +175,8 @@ function About() {
             color="primary.main"
             sx={{
               fontSize: { xs: "1.75rem", md: "2rem" }, // Adjusted size for responsiveness
-            }}>
+            }}
+          >
             Frequently Asked Questions
           </Typography>
           <Typography
@@ -179,7 +186,8 @@ function About() {
             gutterBottom
             sx={{
               fontSize: { xs: "0.9rem", md: "1rem" }, // 10% smaller on smaller screens
-            }}>
+            }}
+          >
             Here are some common queries we receive from our clients.
           </Typography>
           <Accordion sx={{ mb: 2 }} defaultExpanded>
@@ -188,7 +196,8 @@ function About() {
                 <AccordionSummary expandIcon={<ExpandMore />}>
                   <Typography
                     fontWeight="bold"
-                    sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }}>
+                    sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }}
+                  >
                     {faq.question}
                   </Typography>
                 </AccordionSummary>
@@ -218,10 +227,12 @@ function About() {
               bgcolor: "primary.dark",
               transform: "scale(1.05)", // Scale effect on hover
             },
-          }}>
+          }}
+        >
           Contact Us for More Information
         </Button>
       </Container>
+      
     </Box>
   );
 }
@@ -229,14 +240,18 @@ function About() {
 // Sample FAQ data
 const faqData = [
   {
+    question: "What Certification do you have?",
+    answer: "APEDA, Spices Board of India, and FSSAI.",
+  },
+  {
     question: "What types of products do you export?",
     answer:
-      "We export a wide range of agricultural and organic goods, including grains, fruits, vegetables, and more, sourced from reliable suppliers.",
+      "We source products from a wide range of agriculture, including grains, pulses, cereals, processed foods, spices, mixed and blended curry powders, oils, and oleoresins.",
   },
   {
     question: "How do you ensure the quality of your products?",
     answer:
-      "All our products undergo rigorous quality control processes, including inspection, testing, and certification, to meet international standards.",
+      "As per the regulations and compliance of the importing country, we provide inspection, testing, and certification as required.",
   },
   {
     question: "Which countries do you export to?",
@@ -246,12 +261,12 @@ const faqData = [
   {
     question: "What are your payment terms?",
     answer:
-      "We offer flexible payment terms tailored to our clients' needs. Common terms include Letter of Credit (L/C), Telegraphic Transfer (T/T), and Documentary Collections.",
+      "We insist on advance payment and also require an irrevocable letter of credit.",
   },
   {
     question: "Can you provide samples before placing a bulk order?",
     answer:
-      "Yes, we can provide samples upon request. Please contact us with your specific requirements, and we will arrange for samples to be sent to you.",
+      "Yes, we can provide samples upon request. Please contact us with your specific requirements, and we will arrange for samples to be sent to you. We will also charge for the samples at your cost.",
   },
   {
     question: "How do you handle shipping and logistics?",
@@ -271,7 +286,7 @@ const faqData = [
   {
     question: "Who can I contact for more information?",
     answer:
-      "For any further questions or assistance, please reach out to our customer support team via email or call us at +91-7506615066.",
+      "For any further questions or assistance, please reach out to our customer support team via email:- info@fortunaenterprise.in or call us at +91-7506615066.",
   },
 ];
 
