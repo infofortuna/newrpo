@@ -368,8 +368,8 @@ export default function EnhancedNavbar() {
             position: "fixed",
             bottom: "16px",
             right: "16px",
-            backgroundColor: "#25D366", // WhatsApp green
-            color: "#fff",
+            backgroundColor: "#708090", // Slate color
+            color: "#fff", // White text
             borderRadius: "50%", // Make it circular
             width: "56px", // Fixed width
             height: "56px", // Fixed height
@@ -381,11 +381,11 @@ export default function EnhancedNavbar() {
             zIndex: 1000,
           }}
           onMouseEnter={(e) => {
-            e.target.style.backgroundColor = "#128C7E"; // Darker shade on hover
+            e.target.style.backgroundColor = "#4B778D"; // Darker slate color on hover
             e.target.style.transform = "scale(1.1)"; // Slightly enlarge on hover
           }}
           onMouseLeave={(e) => {
-            e.target.style.backgroundColor = "#25D366"; // Original color
+            e.target.style.backgroundColor = "#708090"; // Original slate color
             e.target.style.transform = "scale(1)"; // Reset scale
           }}
           aria-label="Scroll to Top"

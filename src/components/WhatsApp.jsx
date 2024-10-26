@@ -256,8 +256,8 @@ const WhatsAppTopUp = () => {
           aria-label="WhatsApp"
           style={{
             position: "fixed",
-            bottom: "16px",
-            right: "115px",
+            bottom: "80px",
+            right: "16px",
             zIndex: 1000,
             outline: "none",
           }}
@@ -319,7 +319,7 @@ const WhatsAppTopUp = () => {
           Services
         </MenuItem>
 
-        <MenuItem
+        {/* <MenuItem
           onClick={() =>
             handleOptionSelect(
               "Hi!%20I%20have%20a%20question%20about%20my%20import/%20export."
@@ -337,7 +337,7 @@ const WhatsAppTopUp = () => {
           }>
           <ImportExportIcon style={{ marginRight: "8px" }} />
           Import/Export
-        </MenuItem>
+        </MenuItem> */}
 
         {/* Add more options as needed */}
       </Menu>
