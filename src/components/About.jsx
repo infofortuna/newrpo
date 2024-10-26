@@ -232,6 +232,7 @@ function About() {
           Contact Us for More Information
         </Button>
       </Container>
+      
     </Box>
   );
 }

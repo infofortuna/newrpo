@@ -14,12 +14,23 @@ import {
   ListItemText,
   Divider,
   useMediaQuery,
+  Box,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"; // Import the up arrow icon
 import { useTheme } from "@mui/material/styles";
 import "./styles.css"; // Import your CSS file
+import {
+  Email,
+  Phone,
+  Facebook,
+  Instagram,
+  WhatsApp,
+  YouTube,
+  LinkedIn,
+} from "@mui/icons-material";
+import WhatsAppTopUp from "./WhatsApp";
 
 export default function EnhancedNavbar() {
   const location = useLocation();
@@ -55,10 +66,12 @@ export default function EnhancedNavbar() {
     };
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const ScrollToTopButton = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Smooth scroll animation
+    });
   };
-
   useEffect(() => {
     const pageTitle =
       location.pathname === "/"
@@ -159,14 +172,69 @@ export default function EnhancedNavbar() {
 
   return (
     <>
+      <Box
+        sx={{
+          backgroundColor: "orange",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          px: 2,
+        }}
+      >
+        <Box display="flex" alignItems="center">
+          <Email sx={{ mr: 1 }} />
+          <Typography>info@fortunaenterprise.in</Typography>
+          <Phone sx={{ ml: 4, mr: 1 }} />
+          <Typography>+91-7506615066</Typography>
+        </Box>
+        <Box>
+          <IconButton
+            href="https://www.facebook.com"
+            target="_blank"
+            sx={{ color: "white" }}
+          >
+            <Facebook />
+          </IconButton>
+          <IconButton
+            href="https://www.instagram.com"
+            target="_blank"
+            sx={{ color: "white" }}
+          >
+            <Instagram />
+          </IconButton>
+          <IconButton
+            href="https://wa.me/919998943150"
+            target="_blank"
+            sx={{ color: "white" }}
+          >
+            <WhatsApp />
+          </IconButton>
+          <IconButton
+            href="https://www.youtube.com"
+            target="_blank"
+            sx={{ color: "white" }}
+          >
+            <YouTube />
+          </IconButton>
+          <IconButton
+            href="https://www.linkedin.com"
+            target="_blank"
+            sx={{ color: "white" }}
+          >
+            <LinkedIn />
+          </IconButton>
+        </Box>
+      </Box>
       <AppBar
         position="sticky"
-        style={{ backgroundColor: "#ffffff", color: "#333" }}>
+        style={{ backgroundColor: "#ffffff", color: "#333" }}
+      >
         <Toolbar className="container mx-auto flex justify-between items-center px-4 py-2">
           <Typography variant="h6" style={{ color: "#333" }}>
             <Link
               to="/"
-              className="flex items-center no-underline hover:no-underline">
+              className="flex items-center no-underline hover:no-underline"
+            >
               <img
                 src="/company-logo-png.png"
                 alt="Fortuna Enterprise Company Logo"
@@ -194,7 +262,8 @@ export default function EnhancedNavbar() {
                 onMouseLeave={(e) =>
                   (e.target.style.color =
                     location.pathname === item.path ? "#1E40AF" : "#333")
-                }>
+                }
+              >
                 {item.label}
               </Button>
             ))}
@@ -212,7 +281,8 @@ export default function EnhancedNavbar() {
               marginLeft: isMobile ? "auto" : "16px",
             }}
             onMouseEnter={(e) => (e.target.style.backgroundColor = "#1D4ED8")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#1E40AF")}>
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "#1E40AF")}
+          >
             Get Started
           </Button>
 
@@ -221,7 +291,8 @@ export default function EnhancedNavbar() {
               edge="end"
               aria-label="menu"
               onClick={toggleDrawer}
-              style={{ color: "#333", marginLeft: "8px" }}>
+              style={{ color: "#333", marginLeft: "8px" }}
+            >
               <MenuIcon />
             </IconButton>
           )}
@@ -233,11 +304,13 @@ export default function EnhancedNavbar() {
               width: "250px",
               padding: "16px",
               backgroundColor: "#f9f9f9",
-            }}>
+            }}
+          >
             <div className="flex justify-between items-center mb-4">
               <Typography
                 variant="h6"
-                style={{ fontWeight: "bold", color: "#333" }}>
+                style={{ fontWeight: "bold", color: "#333" }}
+              >
                 Menu
               </Typography>
               <IconButton aria-label="close menu" onClick={toggleDrawer}>
@@ -268,7 +341,8 @@ export default function EnhancedNavbar() {
                           location.pathname === item.path ? "#1E40AF" : "#333",
                         fontWeight:
                           location.pathname === item.path ? "bold" : "normal",
-                      }}>
+                      }}
+                    >
                       {item.label}
                     </span>
                   </ListItemText>
@@ -282,29 +356,32 @@ export default function EnhancedNavbar() {
       {/* Scroll to Top Button */}
       {showScrollTop && (
         <Button
-          onClick={scrollToTop}
+          onClick={ScrollToTopButton}
           style={{
             position: "fixed",
             bottom: "16px",
             right: "16px",
             backgroundColor: "#1E40AF",
             color: "#fff",
-            borderRadius: "50%", // Ensures the button is round
-            width: "56px", // Slightly increased for better visibility
-            height: "56px", // Make sure width and height are equal for a round shape
-            display: "flex",
+
+            display: "flex", // Center icon vertically and horizontally
             alignItems: "center",
             justifyContent: "center",
             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-            transition: "background-color 0.3s",
+            transition: "background-color 0.3s, transform 0.2s", // Transition effects
             zIndex: 1000, // Ensure it appears above other elements
+            marginLeft: "30px",
           }}
           onMouseEnter={(e) => (e.target.style.backgroundColor = "#1D4ED8")}
           onMouseLeave={(e) => (e.target.style.backgroundColor = "#1E40AF")}
-          aria-label="Scroll to Top">
+          aria-label="Scroll to Top"
+          onFocus={(e) => (e.target.style.outline = "none")} // Remove default focus outline
+          onBlur={(e) => (e.target.style.outline = "")} // Restore outline on blur
+        >
           <KeyboardArrowUpIcon />
         </Button>
       )}
+      <WhatsAppTopUp />
     </>
   );
 }
