@@ -5,7 +5,7 @@
 header("Content-Type: application/json");
 
 // Allow cross-origin requests
-header("Access-Control-Allow-Origin: https://fortunaenterprise2.vercel.app/"); // Change '*' to your frontend domain in production
+header("Access-Control-Allow-Origin: https://fortunaenterprise.in"); // Change '*' to your frontend domain in production
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
@@ -38,7 +38,7 @@ if (isset($data['name']) && isset($data['email']) && isset($data['phone']) && is
     }
 
     // Compose the email
-    $to = "pragnesh@fortunaenterprise.in"; // Replace with your email address
+    $to = "info@fortunaenterprise.in"; // Replace with your email address
     $subject = "New Contact Form Submission from $name";
     $body = "Name: $name\n";
     $body .= "Email: $email\n";
