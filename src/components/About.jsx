@@ -130,10 +130,11 @@ function About() {
               Our Vision
             </Typography>
             <Typography variant="body1" color="text.secondary">
-              The only goal that has led us to enter this vast industry is
-              proving an example of difference for serving the same kind of
-              products. We believe in supplying the fresh and quality goods from
-              our end...
+              To be the leading facilitator of international trade in
+              agricultural goods, recognized for our commitment to excellence
+              and sustainability. We envision a world where quality agricultural
+              products are accessible to all, enhancing food security and
+              promoting healthy lifestyles globally.
             </Typography>
           </Box>
 
@@ -172,9 +173,11 @@ function About() {
               Our Mission
             </Typography>
             <Typography variant="body1" color="text.secondary">
-              We aim to supply fresh and quality goods to global markets,
-              establishing ourselves as reliable and sustainable partners in the
-              import-export industry.
+              To provide high-quality agricultural and organic products that
+              drive successful global trade. We are committed to connecting
+              producers and consumers through a transparent, efficient, and
+              sustainable supply chain, ensuring that every product meets our
+              rigorous standards of quality and safety.
             </Typography>
           </Box>
         </Box>
