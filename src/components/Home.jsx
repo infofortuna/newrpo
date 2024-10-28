@@ -13,7 +13,6 @@ import { KeyboardArrowRight } from "@mui/icons-material";
 import Slider from "react-slick"; // Import Slider for the carousel
 import WhyUs from "./WhyUs";
 import ImportExport from "./ImportExport";
-import Certifications from "./Certifications";
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
@@ -239,8 +238,6 @@ const Home = () => {
           <WhyUs />
           <ImportExport ref={importExportRef} />
         </Container>
-
-        <Certifications />
 
         <Box sx={{ borderBottom: "1px solid #ddd" }}>
           {" "}
