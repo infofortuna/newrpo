@@ -189,9 +189,10 @@ const Home = () => {
                 textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)",
               }}
             >
-              Your Trusted Partner in Agriculture.
+              Your Trusted Partner for Sourcing Spices and Agricultural
+              Commodities.
             </Typography>
-            <Typography
+            {/* <Typography
               variant="body1"
               sx={{ fontSize: { xs: "0.875rem", sm: "1rem" }, mb: 2 }}
             >
@@ -207,7 +208,7 @@ const Home = () => {
                 agents, and brokers.
               </span>
               &rdquo;
-            </Typography>
+            </Typography> */}
             <Button
               variant="contained"
               color="warning"

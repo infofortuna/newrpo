@@ -78,7 +78,7 @@ const WhyUs = () => {
                 color: "#333",
               }}
             >
-              Premium Organic Agriculture: Sourcing Directly from Farmers
+              Customized Solutions
             </Typography>
             <Typography
               variant="body1"
@@ -90,18 +90,18 @@ const WhyUs = () => {
                 color: "#555",
               }}
             >
-              At Fortuna Enterprise, we specialize in sourcing high-quality
-              organic agricultural products directly from sustainable farms. Our
-              commitment to organic practices ensures that you receive products
-              that are not only good for you but also good for the planet.
+              At Fortuna Enterprise, we understand that every client has unique
+              needs. Our customized solutions are tailored to align with your
+              specific requirements. From product selection to logistics
+              management, we work closely with you to develop strategies that
+              optimize your supply chain and enhance your business operations.
             </Typography>
             <ul style={{ padding: 0, listStyle: "none", margin: "0" }}>
               {[
-                "Certified organic sourcing from trusted farmers.",
-                "Transparent and traceable supply chain for all products.",
-                "Commitment to sustainability and eco-friendliness.",
-                "Supporting local communities through direct partnerships with farmers.",
-                "Freshness and quality guaranteed through direct sourcing.",
+                "Personalized sourcing strategies based on your preferences.",
+                "Flexible logistics options to meet your delivery timelines.",
+                "Direct communication with our team for ongoing support.",
+                "Adaptable solutions that evolve with your business needs.",
               ].map((item, index) => (
                 <li
                   key={index}
@@ -133,6 +133,86 @@ const WhyUs = () => {
           </Paper>
         </Grid>
 
+        <Grid item xs={12} md={6}>
+          <Paper
+            elevation={3}
+            sx={{
+              padding: "2rem",
+              borderRadius: "12px",
+              backgroundColor: "#ffffff",
+              position: "relative",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              boxShadow: 3,
+            }}
+          >
+            <Typography
+              variant="h5"
+              component="h3"
+              sx={{
+                marginBottom: "1rem",
+                fontSize: { xs: "1.5rem", sm: "1.8rem" },
+                fontWeight: 600,
+                textAlign: "center",
+                color: "#333",
+              }}
+            >
+              Competitive Pricing
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                marginBottom: "1rem",
+                fontSize: { xs: "0.9rem", sm: "1.1rem" },
+                lineHeight: 1.6,
+                textAlign: "center",
+                color: "#555",
+              }}
+            >
+              At Fortuna Enterprise, we believe that quality shouldn’t come at a
+              high cost. Our competitive pricing model ensures that you receive
+              top-notch products at prices that suit your budget. By leveraging
+              our extensive network and efficient logistics, we pass on savings
+              to you without compromising quality.
+            </Typography>
+            <ul style={{ padding: 0, listStyle: "none", margin: "0" }}>
+              {[
+                "Negotiated rates with trusted suppliers to maximize savings.",
+                "Transparent pricing with no hidden fees.",
+                "Flexible payment options tailored to your business needs.",
+                "Regular promotions and discounts for loyal customers.",
+              ].map((item, index) => (
+                <li
+                  key={index}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "0.5rem",
+                    backgroundColor: "#f9f9f9",
+                    padding: "0.5rem 1rem",
+                    borderRadius: "8px",
+                    boxShadow: "0 1px 4px rgba(0, 0, 0, 0.1)",
+                  }}
+                >
+                  <FaCheckCircle
+                    style={{ color: "#4caf50", marginRight: "0.5rem" }}
+                  />
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      fontSize: { xs: "0.8rem", sm: "0.9rem" },
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                </li>
+              ))}
+            </ul>
+          </Paper>
+        </Grid>
         <Grid item xs={12} md={6}>
           <Paper
             elevation={3}

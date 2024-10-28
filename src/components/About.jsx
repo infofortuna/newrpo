@@ -107,8 +107,7 @@ function About() {
             <Typography variant="body1" color="text.secondary">
               We simplify the complexities of global trade, connecting
               businesses with exceptional sourcing and logistics solutions to
-              foster international growth, a commission basis and act as
-              sourcing and buying agents, and brokers.
+              foster international growth.
             </Typography>
           </Box>
         </Box>
