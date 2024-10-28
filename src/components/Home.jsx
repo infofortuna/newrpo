@@ -4,7 +4,6 @@ import About from "./About";
 import Products from "./Products";
 import Services from "./Services";
 import Blog from "../blog/Blog";
-import BussinesInfo from "./BussinesInfo";
 import Contact from "./Contact";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -14,6 +13,7 @@ import { KeyboardArrowRight } from "@mui/icons-material";
 import Slider from "react-slick"; // Import Slider for the carousel
 import WhyUs from "./WhyUs";
 import ImportExport from "./ImportExport";
+import Certifications from "./Certifications";
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
@@ -240,7 +240,7 @@ const Home = () => {
           <ImportExport ref={importExportRef} />
         </Container>
 
-        <BussinesInfo />
+        <Certifications />
 
         <Box sx={{ borderBottom: "1px solid #ddd" }}>
           {" "}

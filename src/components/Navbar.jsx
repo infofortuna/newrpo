@@ -188,21 +188,24 @@ export default function EnhancedNavbar() {
           alignItems: "center",
           px: 2,
           flexDirection: "row", // Keep everything in a single row
-        }}>
+        }}
+      >
         <Box display="flex" alignItems="center" sx={{ flexWrap: "wrap" }}>
           <Email sx={{ mr: 1, fontSize: { xs: 18, sm: 24 } }} />{" "}
           {/* Adjust icon size */}
           <Typography
             sx={{
               fontSize: { xs: "10px", sm: "16px" }, // Small font for mobile
-            }}>
+            }}
+          >
             info@fortunaenterprise.in
           </Typography>
           <Phone sx={{ ml: 4, mr: 1, fontSize: { xs: 18, sm: 24 } }} />
           <Typography
             sx={{
               fontSize: { xs: "10px", sm: "16px" },
-            }}>
+            }}
+          >
             +91-7506615066
           </Typography>
         </Box>
@@ -211,30 +214,36 @@ export default function EnhancedNavbar() {
           <IconButton
             href="https://www.facebook.com"
             target="_blank"
-            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }}>
+            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }}
+          >
             <Facebook />
           </IconButton>
           <IconButton
             href="https://www.instagram.com"
             target="_blank"
-            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }}>
+            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }}
+          >
             <Instagram />
           </IconButton>
           <IconButton
+            onClick={handleTopUpClick}
             target="_blank"
-            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }}>
-            <WhatsApp onClick={handleTopUpClick} />
+            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }}
+          >
+            <WhatsApp />
           </IconButton>
           <IconButton
             href="https://www.youtube.com"
             target="_blank"
-            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }}>
+            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }}
+          >
             <YouTube />
           </IconButton>
           <IconButton
             href="https://www.linkedin.com"
             target="_blank"
-            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }}>
+            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }}
+          >
             <LinkedIn />
           </IconButton>
         </Box>
@@ -242,12 +251,14 @@ export default function EnhancedNavbar() {
 
       <AppBar
         position="sticky"
-        style={{ backgroundColor: "#ffffff", color: "#333" }}>
+        style={{ backgroundColor: "#ffffff", color: "#333" }}
+      >
         <Toolbar className="container mx-auto flex justify-between items-center px-4 py-2">
           <Typography variant="h6" style={{ color: "#333" }}>
             <Link
               to="/"
-              className="flex items-center no-underline hover:no-underline">
+              className="flex items-center no-underline hover:no-underline"
+            >
               <img
                 src="/company-logo-png.png"
                 alt="Fortuna Enterprise Company Logo"
@@ -275,7 +286,8 @@ export default function EnhancedNavbar() {
                 onMouseLeave={(e) =>
                   (e.target.style.color =
                     location.pathname === item.path ? "#1E40AF" : "#333")
-                }>
+                }
+              >
                 {item.label}
               </Button>
             ))}
@@ -293,7 +305,8 @@ export default function EnhancedNavbar() {
               marginLeft: isMobile ? "auto" : "16px",
             }}
             onMouseEnter={(e) => (e.target.style.backgroundColor = "#1D4ED8")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#1E40AF")}>
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "#1E40AF")}
+          >
             Get Started
           </Button>
 
@@ -302,7 +315,8 @@ export default function EnhancedNavbar() {
               edge="end"
               aria-label="menu"
               onClick={toggleDrawer}
-              style={{ color: "#333", marginLeft: "8px" }}>
+              style={{ color: "#333", marginLeft: "8px" }}
+            >
               <MenuIcon />
             </IconButton>
           )}
@@ -314,11 +328,13 @@ export default function EnhancedNavbar() {
               width: "250px",
               padding: "16px",
               backgroundColor: "#f9f9f9",
-            }}>
+            }}
+          >
             <div className="flex justify-between items-center mb-4">
               <Typography
                 variant="h6"
-                style={{ fontWeight: "bold", color: "#333" }}>
+                style={{ fontWeight: "bold", color: "#333" }}
+              >
                 Menu
               </Typography>
               <IconButton aria-label="close menu" onClick={toggleDrawer}>
@@ -349,7 +365,8 @@ export default function EnhancedNavbar() {
                           location.pathname === item.path ? "#1E40AF" : "#333",
                         fontWeight:
                           location.pathname === item.path ? "bold" : "normal",
-                      }}>
+                      }}
+                    >
                       {item.label}
                     </span>
                   </ListItemText>
@@ -390,7 +407,8 @@ export default function EnhancedNavbar() {
           }}
           aria-label="Scroll to Top"
           onFocus={(e) => (e.target.style.outline = "none")}
-          onBlur={(e) => (e.target.style.outline = "")}>
+          onBlur={(e) => (e.target.style.outline = "")}
+        >
           <KeyboardArrowUpIcon />
         </Button>
       )}

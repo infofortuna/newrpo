@@ -1,4 +1,4 @@
-import  { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   Card,
   CardContent,
@@ -153,7 +153,7 @@ function Products() {
           </Card>
         </Grid>
 
-        {/* Organic Foods Card */}
+        {/* Processed Foods Card */}
         <Grid item xs={12} sm={6} md={4}>
           <Card
             className="product-card"
@@ -180,15 +180,23 @@ function Products() {
                 component="div"
                 sx={{ fontWeight: "bold", color: "#1976d2" }}
               >
-                Organic Foods
+                Processed Foods
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                Enjoy our range of organic foods, sourced sustainably for your
-                health and wellness.
+                Experience our selection of high-quality processed foods,
+                crafted with care for your health and enjoyment. Each product is
+                made from carefully sourced ingredients to ensure taste and
+                nutritional value.
               </Typography>
               <ul>
-                <li>✓ Fresh Vegetables: Straight from organic farms.</li>
-                <li>✓ Organic Fruits: Naturally ripened for the best taste.</li>
+                <li>
+                  ✓ Healthy Snacks: Delicious and nutritious options for
+                  on-the-go enjoyment.
+                </li>
+                <li>
+                  ✓ Organic Sauces: Made from fresh, natural ingredients to
+                  enhance your meals.
+                </li>
               </ul>
             </CardContent>
           </Card>

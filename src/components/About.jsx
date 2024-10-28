@@ -1,244 +1,219 @@
+import { Box, Container, Typography } from "@mui/material";
 import { useEffect, useRef } from "react";
-import {
-  Box,
-  Container,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  Button,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Divider,
-} from "@mui/material";
-import { ExpandMore } from "@mui/icons-material";
 import gsap from "gsap";
-import { Link } from "react-router-dom";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Certifications from "./Certifications";
 
 // Register GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 function About() {
   const aboutRef = useRef(null);
-  const faqRef = useRef(null);
+
+  // Certifications data
+  const certifications = [
+    {
+      title: "ISO 9001:2015 Certified",
+      image: "/path/to/iso9001.jpg", // Replace with the actual image path
+      description: "Quality management system certification.",
+    },
+    {
+      title: "HACCP Certified",
+      image: "/path/to/haccp.jpg", // Replace with the actual image path
+      description: "Hazard analysis and critical control points certification.",
+    },
+    {
+      title: "FDA Approved for Food Exports",
+      image: "/path/to/fda.jpg", // Replace with the actual image path
+      description: "Certification for compliance with food safety regulations.",
+    },
+  ];
 
   // Animation on Load
   useEffect(() => {
-    const cards = aboutRef.current.querySelectorAll(".about-card");
-    const faqs = faqRef.current.querySelectorAll(".faq-item");
+    const cards = aboutRef.current?.querySelectorAll(".about-card");
 
-    // Animate About Cards
-    gsap.fromTo(
-      cards,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.5,
-        stagger: 0.2,
-      }
-    );
-
-    // Animate FAQ Items on Scroll
-    faqs.forEach((faq) => {
+    // Ensure cards are found before animation
+    if (cards && cards.length) {
       gsap.fromTo(
-        faq,
+        cards,
         { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
           duration: 0.5,
-          scrollTrigger: {
-            trigger: faq,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
+          stagger: 0.2,
         }
       );
-    });
+    }
   }, []);
 
   return (
-    <Box sx={{ bgcolor: "background.default", minHeight: "100vh", py: 8 }}>
-      <Container maxWidth="lg" ref={aboutRef}>
+    <Box sx={{ bgcolor: "background.default", minHeight: "100vh" }}>
+      {/* Header Section */}
+      <Box
+        sx={{
+          height: "250px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: `radial-gradient(circle, rgba(0, 60, 100, 0.8), rgba(30, 80, 120, 0.6)),
+                radial-gradient(at bottom right, rgba(10, 40, 80, 0.5), rgba(5, 20, 60, 0.3)),
+                url('3rd.webp')`,
+          backgroundSize: "cover",
+          color: "white",
+          textAlign: "center",
+        }}
+      >
         <Typography
           variant="h2"
-          align="center"
-          gutterBottom
-          color="primary.main"
           sx={{
-            fontSize: { xs: "1.8rem", md: "2rem" }, // Adjusted size for responsiveness
+            fontSize: { xs: "2rem", md: "3rem" },
+            letterSpacing: "2px",
+            fontWeight: "bold",
           }}
         >
-          Welcome to Fortuna Enterprise
+          ABOUT US
         </Typography>
-        <Typography
-          variant="body1"
-          align="center"
-          gutterBottom
-          color="text.secondary"
+      </Box>
+
+      {/* Main About Content */}
+      <Container maxWidth="lg" ref={aboutRef}>
+        {/* About Section with Flex Design */}
+        <Box
+          className="about-card"
           sx={{
-            fontSize: { xs: "0.9rem", md: "1rem" }, // 10% smaller on smaller screens
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            gap: 4,
+            alignItems: "center",
+            mt: 4,
           }}
         >
-          We simplify the complexities of global trade, connecting businesses
-          with exceptional sourcing and logistics solutions to foster
-          international growth, a commission basis and act as sourcing and
-          buying agents, and brokers.
-        </Typography>
+          {/* Left Side - Image */}
+          <Box sx={{ flex: 1, textAlign: "center" }}>
+            <img
+              src="import.webp"
+              alt="Fortuna Enterprise"
+              style={{ maxWidth: "100%", borderRadius: "8px" }}
+            />
+          </Box>
 
-        <Grid container spacing={4} sx={{ mt: 4 }}>
-          {/* Card Settings */}
-          {[
-            {
-              title: "Our Mission",
-              description:
-                "To provide high-quality agricultural and organic products that drive successful global trade.",
-            },
-            {
-              title: "Our Vision",
-              description:
-                "To be the leading facilitator of international trade in agricultural goods, recognized for our commitment to excellence and sustainability.",
-            },
-            {
-              title: "Our Values",
-              description:
-                "Integrity, quality, and reliability guide every aspect of our operations, ensuring trust and satisfaction in agricultural trade.",
-            },
-            {
-              title: "Expert Team",
-              description:
-                "Our experienced professionals are dedicated to providing tailored solutions that meet your agricultural and organic goods needs.",
-            },
-            {
-              title: "Innovative Solutions",
-              description:
-                "We leverage the latest technologies to streamline processes and enhance efficiency in global agricultural trade.",
-            },
-            {
-              title: "Customer-Centric",
-              description:
-                "Your success is our priority. We work closely with you to understand your needs and exceed your expectations in the agricultural sector.",
-            },
-          ].map((card, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card
-                className="about-card"
-                variant="outlined"
-                sx={{
-                  height: "100%", // Ensure all cards are the same height
-                  display: "flex", // Flexbox to align content
-                  flexDirection: "column", // Stack content vertically
-                  transition: "0.3s",
-                  "&:hover": {
-                    boxShadow: 6,
-                    transform: "scale(1.05)", // Slight scale effect
-                  },
-                }}
-              >
-                <CardContent sx={{ flexGrow: 1 }}>
-                  <Typography
-                    variant="h5"
-                    align="center"
-                    color="primary.main"
-                    sx={{
-                      fontSize: { xs: "1.35rem", md: "1.5rem" }, // Adjusted size for responsiveness
-                    }}
-                  >
-                    {card.title}
-                  </Typography>
-                  <Typography
-                    color="text.secondary"
-                    align="center"
-                    sx={{
-                      fontSize: { xs: "0.9rem", md: "1rem" }, // 10% smaller on smaller screens
-                    }}
-                  >
-                    {card.description}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-
-        <Divider sx={{ my: 6 }} />
-
-        {/* FAQ Section */}
-        <Box mt={6} ref={faqRef}>
-          <Typography
-            variant="h4"
-            align="center"
-            gutterBottom
-            color="primary.main"
-            sx={{
-              fontSize: { xs: "1.75rem", md: "2rem" }, // Adjusted size for responsiveness
-            }}
-          >
-            Frequently Asked Questions
-          </Typography>
-          <Typography
-            variant="body1"
-            align="center"
-            color="text.secondary"
-            gutterBottom
-            sx={{
-              fontSize: { xs: "0.9rem", md: "1rem" }, // 10% smaller on smaller screens
-            }}
-          >
-            Here are some common queries we receive from our clients.
-          </Typography>
-          <Accordion sx={{ mb: 2 }} defaultExpanded>
-            {faqData.map((faq, index) => (
-              <Accordion key={index} className="faq-item" variant="outlined">
-                <AccordionSummary expandIcon={<ExpandMore />}>
-                  <Typography
-                    fontWeight="bold"
-                    sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }}
-                  >
-                    {faq.question}
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography sx={{ fontSize: { xs: "0.8rem", md: "0.9rem" } }}>
-                    {faq.answer}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            ))}
-          </Accordion>
+          {/* Right Side - Details */}
+          <Box sx={{ flex: 2 }}>
+            <Typography variant="h4" color="primary.main" gutterBottom>
+              Fortuna Enterprise
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              We simplify the complexities of global trade, connecting
+              businesses with exceptional sourcing and logistics solutions to
+              foster international growth, a commission basis and act as
+              sourcing and buying agents, and brokers.
+            </Typography>
+          </Box>
         </Box>
 
-        <Button
-          component={Link}
-          to="/pricing"
-          variant="contained"
-          color="primary"
+        {/* Vision Section */}
+        <Box
+          className="about-card"
           sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            gap: 4,
+            alignItems: "center",
             mt: 4,
-            display: "block",
-            mx: "auto",
-            borderRadius: "8px",
-            padding: "12px 24px",
-            transition: "background-color 0.2s, transform 0.2s",
-            "&:hover": {
-              bgcolor: "primary.dark",
-              transform: "scale(1.05)", // Scale effect on hover
-            },
           }}
         >
-          Contact Us for More Information
-        </Button>
+          {/* Left Side - Vision Details */}
+          <Box sx={{ flex: 2 }}>
+            <Typography variant="h4" color="primary.main" gutterBottom>
+              Our Vision
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              The only goal that has led us to enter this vast industry is
+              proving an example of difference for serving the same kind of
+              products. We believe in supplying the fresh and quality goods from
+              our end...
+            </Typography>
+          </Box>
+
+          {/* Right Side - Vision Image */}
+          <Box sx={{ flex: 1, textAlign: "center" }}>
+            <img
+              src="/vision.webp"
+              alt="Our Vision"
+              style={{ maxWidth: "100%", borderRadius: "8px" }}
+            />
+          </Box>
+        </Box>
+
+        {/* Mission Section */}
+        <Box
+          className="about-card"
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            gap: 4,
+            alignItems: "center",
+            mt: 4,
+          }}
+        >
+          {/* Left Side - Mission Image */}
+          <Box sx={{ flex: 1, textAlign: "center" }}>
+            <img
+              src="/mission.webp"
+              alt="Our Mission"
+              style={{ maxWidth: "100%", borderRadius: "8px" }}
+            />
+          </Box>
+          {/* Right Side - Mission Details */}
+          <Box sx={{ flex: 2 }}>
+            <Typography variant="h4" color="primary.main" gutterBottom>
+              Our Mission
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              We aim to supply fresh and quality goods to global markets,
+              establishing ourselves as reliable and sustainable partners in the
+              import-export industry.
+            </Typography>
+          </Box>
+        </Box>
+
+        {/* Certification Section */}
+        <Certifications certifications={certifications} />
+
+        {/* FAQ Section */}
+        <Box sx={{ mt: 6 }}>
+          <Typography variant="h4" color="primary.main" gutterBottom>
+            Frequently Asked Questions
+          </Typography>
+          {faqData.map((faq, index) => (
+            <Box key={index} sx={{ mt: 2 }}>
+              <Typography variant="h6" gutterBottom>
+                Q{index + 1}: {faq.question}
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                {faq.answer}
+              </Typography>
+            </Box>
+          ))}
+        </Box>
       </Container>
-      
     </Box>
   );
 }
 
-// Sample FAQ data
 const faqData = [
+  {
+    question: "How can I place an order?",
+    answer:
+      " You can place an order by contacting us through our website or reaching out directly via email.",
+  },
+  {
+    question: "What products do you specialize in?",
+    answer:
+      " We specialize in exporting spices, agricultural products, and processed foods.",
+  },
   {
     question: "What Certification do you have?",
     answer: "APEDA, Spices Board of India, and FSSAI.",
@@ -281,12 +256,7 @@ const faqData = [
   {
     question: "How can I track my order?",
     answer:
-      "Once your order is shipped, we provide a tracking number and relevant details so you can monitor the progress of your shipment in real-time.",
-  },
-  {
-    question: "Who can I contact for more information?",
-    answer:
-      "For any further questions or assistance, please reach out to our customer support team via email:- info@fortunaenterprise.in or call us at +91-7506615066.",
+      "Once your order is shipped, we will provide you with a tracking number and details to help you monitor the progress of your shipment.",
   },
 ];
 
