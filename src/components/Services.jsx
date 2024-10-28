@@ -78,8 +78,7 @@ function Services() {
           sx={{
             fontSize: { xs: "1.5rem", sm: "2rem", md: "2.2rem" },
             fontWeight: "bold",
-          }}
-        >
+          }}>
           Our Services
         </Typography>
         <Typography
@@ -87,8 +86,10 @@ function Services() {
           align="center"
           color="text.secondary"
           gutterBottom
-          sx={{ mt: 2, fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.7rem" } }}
-        >
+          sx={{
+            mt: 2,
+            fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.7rem" },
+          }}>
           &quot;Your Trusted Partner in Global Trade Solutions.&quot;
         </Typography>
 
@@ -119,7 +120,7 @@ function Services() {
               ],
             },
             {
-              title: "Import Procedures Management",
+              title: "Export-Import Operations Management ",
               image: "impexp.jpeg",
               content: [
                 { text: "Comprehensive Support", highlight: true },
@@ -142,8 +143,7 @@ function Services() {
                     transform: "scale(1.05)",
                     boxShadow: 6,
                   },
-                }}
-              >
+                }}>
                 <CardMedia
                   component="img"
                   height="200"
@@ -162,8 +162,7 @@ function Services() {
                     sx={{
                       fontWeight: "bold",
                       fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" },
-                    }}
-                  >
+                    }}>
                     <MdCheckCircle
                       style={{ marginRight: "0.5rem", color: "green" }}
                     />
@@ -176,8 +175,7 @@ function Services() {
                       paragraph
                       sx={{
                         fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                      }}
-                    >
+                      }}>
                       {item.highlight ? (
                         <strong style={{ color: "primary.main" }}>
                           {item.text}
@@ -201,8 +199,7 @@ function Services() {
               padding: 4,
               borderRadius: 2,
               boxShadow: 3,
-            }}
-          >
+            }}>
             <Typography
               variant="h5"
               color="primary.contrastText"
@@ -210,24 +207,21 @@ function Services() {
               sx={{
                 fontSize: { xs: "1.5rem", sm: "1.7rem", md: "2rem" },
                 fontWeight: "bold",
-              }}
-            >
+              }}>
               <FaGlobe style={{ marginRight: "0.5rem" }} />
               Export Markets
             </Typography>
             <Typography
               color="primary.contrastText"
               sx={{ fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" } }}
-              paragraph
-            >
+              paragraph>
               We specialize in sourcing and exporting a diverse range of
               high-quality products to various global markets.
             </Typography>
             <Typography
               color="primary.contrastText"
               sx={{ fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" } }}
-              paragraph
-            >
+              paragraph>
               Our key export markets include:
             </Typography>
             <ul style={{ listStyle: "none", padding: 0 }}>
@@ -243,8 +237,7 @@ function Services() {
                     color="primary.contrastText"
                     sx={{
                       fontSize: { xs: "0.85rem", sm: "1rem", md: "1.1rem" },
-                    }}
-                  >
+                    }}>
                     • {market}
                   </Typography>
                 </li>

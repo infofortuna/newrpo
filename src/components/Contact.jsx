@@ -89,8 +89,7 @@ function ContactUs() {
         alignItems: "center",
         justifyContent: "center",
         boxShadow: 1,
-      }}
-    >
+      }}>
       <Grid
         container
         spacing={3}
@@ -100,8 +99,7 @@ function ContactUs() {
           backgroundColor: "#f9f9f9",
           width: { xs: "100%", md: "80%", lg: "70%" },
           overflow: "hidden",
-        }}
-      >
+        }}>
         <Grid item xs={12} md={6}>
           <Box sx={{ p: 4 }}>
             <Typography
@@ -110,8 +108,7 @@ function ContactUs() {
                 fontWeight: "bold",
                 fontSize: { xs: "1.5rem", md: "1.75rem" },
                 color: "#00796b",
-              }}
-            >
+              }}>
               Contact Us
             </Typography>
             <Typography sx={{ mb: 3 }} color="textSecondary">
@@ -180,8 +177,7 @@ function ContactUs() {
                     "&:hover": {
                       backgroundColor: "#005b5b",
                     },
-                  }}
-                >
+                  }}>
                   {isSubmitting ? (
                     <CircularProgress size={24} color="inherit" />
                   ) : (
@@ -205,8 +201,7 @@ function ContactUs() {
               color: "white",
               borderRadius: 2,
               boxShadow: 1,
-            }}
-          >
+            }}>
             <Box
               sx={{
                 border: "4px solid white",
@@ -216,8 +211,7 @@ function ContactUs() {
                 justifyContent: "center",
                 alignItems: "center",
                 mb: 2,
-              }}
-            >
+              }}>
               <Avatar
                 alt="Fortuna Enterprise"
                 src="company-logo-png.png" // Update with your logo path
@@ -233,8 +227,7 @@ function ContactUs() {
                 fontWeight: "bold",
                 fontSize: { xs: "1.5rem", md: "1.75rem" },
                 color: "white",
-              }}
-            >
+              }}>
               Get in Touch
             </Typography>
             <Typography sx={{ mb: 2, fontSize: { xs: "0.85rem", md: "1rem" } }}>
@@ -244,8 +237,7 @@ function ContactUs() {
             <Divider sx={{ mb: 2, backgroundColor: "whiteAlpha.400" }} />
             <Typography fontWeight="bold">Contact Information:</Typography>
             <Box
-              sx={{ border: "1px solid white", borderRadius: 1, p: 2, mt: 2 }}
-            >
+              sx={{ border: "1px solid white", borderRadius: 1, p: 2, mt: 2 }}>
               <Stack spacing={1}>
                 <Typography display="flex" alignItems="center">
                   <FaPhoneAlt style={{ marginRight: 8 }} />
@@ -254,8 +246,7 @@ function ContactUs() {
                 <Typography display="flex" alignItems="center">
                   <FaEnvelope style={{ marginRight: 8 }} />
                   <span
-                    style={{ color: "#ffeb3b", textDecoration: "underline" }}
-                  >
+                    style={{ color: "#ffeb3b", textDecoration: "underline" }}>
                     info@fortunaenterprise.in
                   </span>
                 </Typography>
@@ -271,32 +262,28 @@ function ContactUs() {
                 color="inherit"
                 href="#"
                 aria-label="Facebook"
-                target="_blank"
-              >
+                target="_blank">
                 <FaFacebook />
               </IconButton>
               <IconButton
                 color="inherit"
                 href="#"
                 aria-label="Twitter"
-                target="_blank"
-              >
+                target="_blank">
                 <FaTwitter />
               </IconButton>
               <IconButton
                 color="inherit"
                 href="https://www.linkedin.com/in/mahesh-gulechaa-941867210"
                 target="_blank"
-                aria-label="LinkedIn"
-              >
+                aria-label="LinkedIn">
                 <FaLinkedin />
               </IconButton>
               <IconButton
                 color="inherit"
                 href="https://www.instagram.com/fortunaenterprise_/"
                 target="_blank"
-                aria-label="Instagram"
-              >
+                aria-label="Instagram">
                 <FaInstagram />
               </IconButton>
             </Stack>
@@ -308,8 +295,7 @@ function ContactUs() {
                 height: "200px",
                 borderRadius: 2,
                 overflow: "hidden",
-              }}
-            >
+              }}>
               <iframe
                 title="Google Map"
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15887.12599008619!2d73.1659085!3d22.3176504!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8b84cad1c5f%3A0x5f36b27a05260b16!2sAtlantis%20K10!5e0!3m2!1sen!2sus!4v1697762919003!5m2!1sen!2sus"

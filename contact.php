@@ -37,7 +37,7 @@ if (isset($data['name']) && isset($data['email']) && isset($data['phone']) && is
         exit;
     }
 
-    // Compose the email
+    // Compose the  
     $to = "info@fortunaenterprise.in"; // Replace with your email address
     $subject = "New Contact Form Submission from $name";
     $body = "Name: $name\n";
