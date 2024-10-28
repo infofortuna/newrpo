@@ -1,11 +1,11 @@
-<?php 
+<?php
 // contact.php
 
 // Set the content type to JSON
 header("Content-Type: application/json");
 
 // Allow cross-origin requests
-header("Access-Control-Allow-Origin: *"); // Change '*' to your frontend domain in production
+header("Access-Control-Allow-Origin: https://fortunaenterprise.in"); // Change '*' to your frontend domain in production
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
@@ -46,8 +46,13 @@ if (isset($data['name']) && isset($data['email']) && isset($data['phone']) && is
     $body .= "Product: $product\n";
     $body .= "Message: $message\n";
 
+    // Headers
+    $headers = "From: $email\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
     // Send the email
-    if (mail($to, $subject, $body)) {
+    if (mail($to, $subject, $body, $headers)) {
         $response['status'] = 'success';
         $response['message'] = 'Your message has been sent successfully.';
     } else {
