@@ -11,7 +11,9 @@ import BlogPage from "./blog/BlogPage";
 import Footer from "./components/Footer";
 import Pricing from "./components/Pricing";
 import NotFound from "./components/NotFound"; // Uncomment the import
-
+import AgriculturalProductsPage from "./products/AgriculturalProductsPage";
+import PremiumSpicesPage from "./products/PremiumSpicesPage";
+import ProcessedFoodsPage from "./products/ProcessedFoodsPage";
 const routes = [
   { path: "/", element: <Home /> },
   { path: "/about", element: <About /> },
@@ -22,6 +24,9 @@ const routes = [
   { path: "/blog", element: <Blog /> },
   { path: "/blog/:id", element: <BlogPage /> },
   { path: "/pricing", element: <Pricing /> },
+  { path: "/products/agriculture", element: <AgriculturalProductsPage /> },
+  { path: "/products/spices", element: <PremiumSpicesPage /> },
+  { path: "/products/processed-foods", element: <ProcessedFoodsPage /> },
   { path: "*", element: <NotFound /> }, // Catch-all route for 404
 ];
 

@@ -260,7 +260,7 @@ const WhyUs = () => {
               {[
                 "Rigorous quality control protocols.",
                 "Regular inspections and certifications.",
-                "Customer satisfaction is our priority.",
+                "Customer satisfaction is our priority.", 
               ].map((item, index) => (
                 <li
                   key={index}
