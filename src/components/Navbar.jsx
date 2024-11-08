@@ -20,7 +20,11 @@ import {
 import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import {
+  KeyboardArrowDown as KeyboardArrowDownIcon,
+  KeyboardArrowUp as KeyboardArrowUpIcon,
+} from "@mui/icons-material";
+
 import {
   Email,
   Phone,
@@ -33,6 +37,7 @@ import {
 } from "@mui/icons-material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPepperHot } from "@fortawesome/free-solid-svg-icons";
+
 import "./styles.css";
 import WhatsAppTopUp from "./WhatsApp";
 
@@ -136,7 +141,12 @@ export default function EnhancedNavbar() {
     { path: "/blog", label: "Blog" },
     { path: "/contact", label: "Contact" },
   ];
-
+  function openWhatsApp() {
+    window.open(
+      "https://api.whatsapp.com/send?phone=917506615066&text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services%20and%20products.",
+      "_blank"
+    );
+  }
   return (
     <>
       {/* Contact Information Bar */}
@@ -147,53 +157,82 @@ export default function EnhancedNavbar() {
           justifyContent: "space-between",
           alignItems: "center",
           px: 2,
+          flexWrap: { xs: "nowrap", sm: "wrap" }, // Prevent wrap on mobile
+          overflowX: "hidden",
+          gap: { xs: 0.5, sm: 1 }, // Less gap on mobile
         }}
       >
-        <Box display="flex" alignItems="center">
-          {/* Contact info with icons */}
-          <Email sx={{ mr: 1, fontSize: { xs: 18, sm: 24 } }} />
-          <Typography sx={{ fontSize: { xs: "10px", sm: "16px" } }}>
+        {/* Contact Info */}
+        <Box
+          display="flex"
+          alignItems="center"
+          sx={{
+            flexWrap: { xs: "nowrap", sm: "wrap" }, // Prevent wrap on mobile
+            justifyContent: { xs: "center", sm: "flex-start" },
+            mb: { xs: 0, sm: 1 }, // No bottom margin on mobile
+            gap: { xs: 1, sm: 2 }, // Reduce gap on mobile
+          }}
+        >
+          <Email sx={{ mr: 0.5, fontSize: { xs: 16, sm: 24 } }} />
+          <Typography
+            variant="body2"
+            sx={{ fontSize: { xs: "8px", sm: "16px" }, whiteSpace: "nowrap" }}
+          >
             info@fortunaenterprise.in
           </Typography>
-          <Phone sx={{ ml: 4, mr: 1, fontSize: { xs: 18, sm: 24 } }} />
-          <Typography sx={{ fontSize: { xs: "10px", sm: "16px" } }}>
+          <Phone
+            sx={{ ml: { xs: 1, sm: 2 }, mr: 0.5, fontSize: { xs: 16, sm: 24 } }}
+          />
+          <Typography
+            variant="body2"
+            sx={{ fontSize: { xs: "8px", sm: "16px" }, whiteSpace: "nowrap" }}
+          >
             +91-7506615066
           </Typography>
         </Box>
 
-        {/* Social media icons */}
-        <Box display="flex" alignItems="center">
+        {/* Social Media Icons */}
+        <Box
+          display="flex"
+          alignItems="center"
+          sx={{
+            justifyContent: { xs: "center", sm: "flex-end" },
+            gap: { xs: 0.5, sm: 1 }, // Less gap on mobile
+          }}
+        >
           <IconButton
             href="https://www.facebook.com"
             target="_blank"
-            sx={{ color: "white" }}
+            rel="noopener noreferrer"
+            aria-label="Open Facebook page"
+            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }} // Adjust icon size
           >
-            <Facebook />
+            <Facebook sx={{ fontSize: { xs: 16, sm: 24 } }} />
           </IconButton>
           <IconButton
             href="https://www.instagram.com/fortunaenterprise_/"
             target="_blank"
-            sx={{ color: "white" }}
+            rel="noopener noreferrer"
+            aria-label="Open Instagram page"
+            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }} // Adjust icon size
           >
-            <Instagram />
+            <Instagram sx={{ fontSize: { xs: 16, sm: 24 } }} />
           </IconButton>
           <IconButton
-            onClick={() =>
-              window.open(
-                "https://api.whatsapp.com/send?phone=917506615066&text= Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services%20and%20products.",
-                "_blank"
-              )
-            }
-            sx={{ color: "white" }}
+            onClick={openWhatsApp}
+            aria-label="Open WhatsApp chat"
+            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }} // Adjust icon size
           >
-            <WhatsApp />
+            <WhatsApp sx={{ fontSize: { xs: 16, sm: 24 } }} />
           </IconButton>
           <IconButton
             href="https://www.linkedin.com/in/mahesh-gulechaa-941867210/"
             target="_blank"
-            sx={{ color: "white" }}
+            rel="noopener noreferrer"
+            aria-label="Open LinkedIn profile"
+            sx={{ color: "white", fontSize: { xs: 18, sm: 24 } }} // Adjust icon size
           >
-            <LinkedIn />
+            <LinkedIn sx={{ fontSize: { xs: 16, sm: 24 } }} />
           </IconButton>
         </Box>
       </Box>
@@ -291,19 +330,19 @@ export default function EnhancedNavbar() {
           </div>
 
           {/* "Get Started" Button */}
-          <Button
+          {/* <Button
             component={Link}
             to="/contact"
             style={{
               backgroundColor: "#1E40AF",
-              color: "#ffffff",
+              color: "#2d2d2d",
               padding: "8px 16px",
               borderRadius: "9999px",
               marginLeft: isMobile ? "auto" : "16px",
             }}
           >
             Get Started
-          </Button>
+          </Button> */}
 
           {/* Mobile Menu Button */}
           {isMobile && (
@@ -322,7 +361,7 @@ export default function EnhancedNavbar() {
         <Drawer anchor="right" open={isDrawerOpen} onClose={toggleDrawer}>
           <div style={{ width: "250px" }}>
             <IconButton
-              onClick={toggleDrawer} // Ensure this toggles the drawer state correctly
+              onClick={toggleDrawer} // Close the drawer when clicked
               style={{ float: "right", margin: "8px" }}
             >
               <CloseIcon />
@@ -334,18 +373,42 @@ export default function EnhancedNavbar() {
                   key={item.path}
                   component={Link}
                   to={item.path}
-                  onClick={toggleDrawer} // Close drawer on item click
+                  onClick={() => {
+                    toggleDrawer();
+                    window.scrollTo(0, 0); // Scroll to top on item click
+                  }}
+                  sx={{
+                    backgroundColor:
+                      location.pathname === item.path
+                        ? "#f0f0f0"
+                        : "transparent", // Highlight active link
+                    "&:hover": { backgroundColor: "#e0e0e0" }, // Hover effect
+                  }}
                 >
                   <ListItemText primary={item.label} />
                 </ListItem>
               ))}
 
+              {/* "Products" expandable item with arrow icon */}
               <ListItem
                 button
                 onClick={() => setShowProductOptions(!showProductOptions)}
+                sx={{
+                  "&:hover": { backgroundColor: "#e0e0e0" },
+                  display: "flex",
+                  justifyContent: "space-between", // Align text and arrow icon
+                }}
               >
                 <ListItemText primary="Products" />
+                {/* Arrow icon to indicate expandability */}
+                {showProductOptions ? (
+                  <KeyboardArrowUpIcon />
+                ) : (
+                  <KeyboardArrowDownIcon />
+                )}
               </ListItem>
+
+              {/* Nested product options */}
               {showProductOptions && (
                 <Box ml={4}>
                   {productActions.map((action) => (
@@ -355,6 +418,13 @@ export default function EnhancedNavbar() {
                       component={Link}
                       to={action.path}
                       onClick={toggleDrawer} // Close drawer on product item click
+                      sx={{
+                        backgroundColor:
+                          location.pathname === action.path
+                            ? "#f0f0f0"
+                            : "transparent",
+                        "&:hover": { backgroundColor: "#e0e0e0" },
+                      }}
                     >
                       <ListItemText primary={action.name} />
                     </ListItem>
@@ -366,34 +436,22 @@ export default function EnhancedNavbar() {
         </Drawer>
 
         {/* Scroll to Top Button */}
+
         {showScrollTop && (
-          <Box
+          <IconButton
             onClick={handleScrollToTop}
+            color="primary"
+            aria-label="scroll to top"
             sx={{
               position: "fixed",
-              bottom: 16,
+              bottom: 8,
               right: 16,
-              zIndex: 100,
-              bgcolor: "primary.main", // Default background color
-              p: 0.5, // Padding to make the button smaller
-              borderRadius: "50%",
-              cursor: "pointer",
-              width: 40,
-              height: 40,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              transition: "background-color 0.3s ease", // Smooth transition for background color
-              "&:hover": {
-                bgcolor: "primary.dark", // Darker background color on hover
-              },
-              "&:active": {
-                bgcolor: "primary.light", // Lighter background color when clicked
-              },
+              backgroundColor: "#E5E5E5",
             }}
+            zIndex="1"
           >
-            <KeyboardArrowUpIcon fontSize="medium" sx={{ color: "white" }} />
-          </Box>
+            <KeyboardArrowUpIcon />
+          </IconButton>
         )}
       </AppBar>
       <WhatsAppTopUp /> {/* Floating WhatsApp button */}

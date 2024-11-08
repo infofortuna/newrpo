@@ -18,7 +18,7 @@ const WhatsAppTopUp = () => {
           height: "44px",
           width: "44px",
           position: "fixed",
-          bottom: "80px",
+          bottom: "55px",
           right: "14px",
           zIndex: 1000,
           outline: "none",

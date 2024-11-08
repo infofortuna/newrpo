@@ -1,4 +1,3 @@
-
 import {
   Container,
   Grid,
@@ -16,15 +15,15 @@ function AgriculturalProductsPage() {
       description:
         "Sourced from the best farms in India, known for its quality.",
       image:
-        "https://cdn.pixabay.com/photo/2023/09/25/16/18/agriculture-8275498_960_720.jpg",
+        "https://media.istockphoto.com/id/671580286/photo/rice.jpg?s=2048x2048&w=is&k=20&c=LoQzIZMwhbdXImggwJ--jaAkGdvSVvWFBdlBTa2ZEYo=",
     },
     {
-      title: "Spices",
-      description: "Turmeric, cumin, and black pepper, carefully selected.",
+      title: "Wheat",
+      description:
+        "High-quality wheat, perfect for all your baking and cooking needs. Sourced from the finest fields to ensure purity and excellent grain quality.",
       image:
-        "https://media.istockphoto.com/id/862309762/photo/abhyanga-snan-on-first-day-of-diwali-special-herbal-bath-with-ubtan-or-utne-a-mix-herbal.jpg?s=2048x2048&w=is&k=20&c=t0L953-QOsg7AhGuBfNn7MdIKQyRtjxDdakIauobmV8=",
+        "https://media.istockphoto.com/id/874147316/photo/wheat-flields.jpg?s=2048x2048&w=is&k=20&c=9dJ9k7GCSWaupbIR0fbGqdUaj19xWSfGK0_sj5h-x1w=",
     },
-    // Add more products...
   ];
 
   return (

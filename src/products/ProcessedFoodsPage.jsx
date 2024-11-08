@@ -13,38 +13,37 @@ function ProcessedFoodsPage() {
       title: "Healthy Snacks",
       description: "Delicious and nutritious options for on-the-go enjoyment.",
       image:
-        "https://media.istockphoto.com/id/1180755247/photo/healthy-snacks.jpg?s=2048x2048&w=is&k=20&c=4xLOwqV6cyQEqayv9-f6OD_zCO5du4UuWzMzy13XpkM=",
+        "https://media.istockphoto.com/id/1155403392/photo/mother-preparing-school-lunch-box.jpg?s=2048x2048&w=is&k=20&c=9un50Z9R9GeAuTx6C-lMhp4N9xC3ZjF7NJKM8w82AbE=",
     },
     {
       title: "Organic Sauces",
-      description:
-        "Made from fresh, natural ingredients to enhance your meals.",
+      description: "Made from natural ingredients to enhance your meals.",
       image:
-        "https://cdn.pixabay.com/photo/2021/01/27/10/22/sauces-5959969_960_720.jpg",
+        "https://media.istockphoto.com/id/497948923/photo/homemade-red-italian-marinara-sauce.jpg?s=2048x2048&w=is&k=20&c=8aTd_LYbC6r4VRR3VCMD2iBRVr9FRXt1Wvi85AyaT8o=",
     },
     {
       title: "Instant Oats",
       description: "Quick and nutritious breakfast option for busy mornings.",
       image:
-        "https://cdn.pixabay.com/photo/2017/08/21/18/51/oats-2666062_960_720.jpg",
+        "https://media.istockphoto.com/id/178540827/photo/instant-oatmeal-with-dried-raspberries-on-slate-surface.jpg?s=2048x2048&w=is&k=20&c=JISOa6so-R3zUYpwMpvgX1symWetbGk7PMJpm227GFk=",
     },
     {
       title: "Nut Butter",
       description: "Smooth and creamy butters made from natural nuts.",
       image:
-        "https://cdn.pixabay.com/photo/2020/01/09/13/34/nut-4749046_960_720.jpg",
+        "https://media.istockphoto.com/id/1250251387/photo/toast-with-peanut-butter-on-vintage-table-set-in-rustic-kitchen.jpg?s=2048x2048&w=is&k=20&c=fqiI7F0oahsjVctKFKjVc4mcENT0PWlnxUWjqZTXXho=",
     },
     {
       title: "Granola Bars",
       description: "Tasty, energy-boosting snacks packed with goodness.",
       image:
-        "https://cdn.pixabay.com/photo/2018/06/11/16/17/granola-3761354_960_720.jpg",
+        "https://media.istockphoto.com/id/1363848757/photo/energy-granola-bars-with-different-seeds-nuts-and-dried-fruits-and-berries-on-white-marble.jpg?s=2048x2048&w=is&k=20&c=VMTq620yycX7_88Cnw8OJ-_-ReMcLXhH5WPZ3zthyCk=",
     },
     {
       title: "Canned Vegetables",
       description: "Convenient and healthy canned vegetable options.",
       image:
-        "https://cdn.pixabay.com/photo/2020/04/16/14/13/canned-food-5054504_960_720.jpg",
+        "https://media.istockphoto.com/id/1155951289/photo/preserved-vegetables-in-glass-jars.jpg?s=2048x2048&w=is&k=20&c=l3RNhqrYZ-ubGbh5J-DaJcGcZGyv-2E4RgMTyoDxcCA=",
     },
   ];
 

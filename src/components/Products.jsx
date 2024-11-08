@@ -6,11 +6,14 @@ import {
   Typography,
   Grid,
   Container,
+  Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 
 function Products() {
   const productsRef = useRef(null);
+  const navigate = useNavigate();
 
   // Animation on Load
   useEffect(() => {
@@ -101,6 +104,14 @@ function Products() {
                   carefully selected for authenticity.
                 </li>
               </ul>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => navigate("/products/agriculture")}
+                sx={{ mt: 2 }}
+              >
+                See More
+              </Button>
             </CardContent>
           </Card>
         </Grid>
@@ -149,6 +160,14 @@ function Products() {
                   any dish.
                 </li>
               </ul>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => navigate("/products/spices")}
+                sx={{ mt: 2 }}
+              >
+                See More
+              </Button>
             </CardContent>
           </Card>
         </Grid>
@@ -168,7 +187,7 @@ function Products() {
               component="img"
               height="140"
               image="https://media.istockphoto.com/id/1147252758/photo/healthy-vegetarian-food-background-vegetables-pesto-and-lentil-curry-with-tofu.jpg?s=2048x2048&w=is&k=20&c=8zbnbstQR6nflAuEmk6OVnnROWRIrUTW4cGqDPQ3ce8="
-              alt="Organic Foods"
+              alt="Processed Foods"
               sx={{
                 transition: "transform 0.3s",
                 "&:hover": { transform: "scale(1.1)" },
@@ -198,6 +217,14 @@ function Products() {
                   enhance your meals.
                 </li>
               </ul>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => navigate("/products/processed-foods")}
+                sx={{ mt: 2 }}
+              >
+                See More
+              </Button>
             </CardContent>
           </Card>
         </Grid>
